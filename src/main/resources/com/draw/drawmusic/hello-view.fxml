@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="775.0" stylesheets="@css/dark_mode.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.draw.drawmusic.MainController">
+    <top>
+        <MenuBar prefHeight="10.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <HBox>
+                           <children>
+                              <Label text="New" />
+                              <Label textAlignment="RIGHT" />
+                           </children>
+                        </HBox>
+                     </graphic></MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Open" />
+                  <MenuItem mnemonicParsing="false" text="Save as" />
+                  <MenuItem mnemonicParsing="false" text="Export" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+   <left>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+             <ToolBar prefHeight="40.0" prefWidth="200.0" />
+            <ScrollPane fx:id="trackBarScrollPane" prefHeight="521.0" prefWidth="174.0">
+               <content>
+                  <VBox fx:id="trackBar" prefHeight="521.0" styleClass="track-bar" />
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <HBox BorderPane.alignment="TOP_LEFT">
+         <children>
+            <VBox fx:id="trackBarResize" prefHeight="502.0" prefWidth="4.0" styleClass="track-bar-resize" />
+            <StackPane prefHeight="502.0" prefWidth="601.0">
+               <children>
+                  <Group StackPane.alignment="TOP_LEFT" />
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>
