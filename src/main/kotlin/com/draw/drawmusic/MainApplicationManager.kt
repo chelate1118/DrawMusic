@@ -14,27 +14,41 @@ class MainApplicationManager : Application(){
     companion object {
         var windowWidth  : Double = 800.0
         var windowHeight : Double = 500.0
-        private lateinit var scene : Scene
+        lateinit var scene : Scene
         private var stage : Stage = Stage()
+
         private fun setScene(fxmlFilePath : String) {
             val fxmlLoader = FXMLLoader(MainApplicationManager::class.java.getResource(fxmlFilePath))
             scene = Scene(fxmlLoader.load(), windowWidth, windowHeight)
         }
+
         private fun setStyle(cssFilePath : String) {
             scene.stylesheets.add(MainApplicationManager::class.java.getResource("css/".plus(cssFilePath))?.toString())
         }
-
-        private fun setStage(title : String, iconPath : String, isMaximized : WindowSize) {
+        private fun setStage(title : String, iconPath : String,
+                             isMaximized : WindowSize) {
             stage.title = title
             stage.scene = scene
             stage.icons.add(Image(MainApplicationManager::class.java.getResource("images/".plus(iconPath))?.toString()))
             stage.isMaximized = isMaximized == WindowSize.IS_MAXIMIZED
         }
 
-        fun changeStage(fxmlFilePath: String, cssFilePath: String, title: String, iconPath: String, isMaximized: WindowSize) {
+        private fun setListenWindowSize() {
+            stage.widthProperty().addListener{ _, _, newVal -> run{
+                windowWidth = newVal as Double
+            }}
+
+            stage.heightProperty().addListener{ _, _, newVal -> run{
+                windowHeight = newVal as Double
+            }}
+        }
+
+        fun changeStage(fxmlFilePath: String, cssFilePath: String, title: String,
+                        iconPath: String, isMaximized: WindowSize) {
             setScene(fxmlFilePath)
             setStyle(cssFilePath)
             setStage(title, iconPath, isMaximized)
+            setListenWindowSize()
 
             stage.show()
         }
@@ -50,7 +64,8 @@ class MainApplicationManager : Application(){
     }*/
 
     override fun start(primaryStage: Stage) {
-        changeStage("start-view.fxml", "light_mode.css", "Draw Music", "icon.png", WindowSize.NOT_MAXIMIZED)
+        changeStage("start-view.fxml", "light_mode.css",
+            "Draw Music", "icon.png", WindowSize.NOT_MAXIMIZED)
 
         stage.show()
     }

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="516.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.draw.drawmusic.controllers.StartView">
+<AnchorPane prefHeight="516.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.draw.drawmusic.controllers.StartViewController">
    <children>
       <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="516.0" prefWidth="681.0">
          <columnConstraints>
@@ -13,7 +13,7 @@
             <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
          </rowConstraints>
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" text="Button" />
+            <Button styleClass="button2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#buttonClicked" text="Button" />
          </children>
       </GridPane>
    </children>

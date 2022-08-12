@@ -15,6 +15,14 @@
     -fx-background-color: #6B7BE0;
 }
 
+.buttonInToolBar {
+    -fx-background-color: transparent;
+}
+
+.buttonInToolBar:hover {
+    -fx-background-color: derive(white, 90%);
+}
+
 .menu-bar {
     -fx-background-color: #3B3B3B;
 }
@@ -33,13 +41,18 @@
     -fx-cursor: e-resize;
 }
 
+.debug {
+    -fx-background-color: #FF0000;
+}
+
+
 .label {
     -fx-font-family: "Ubuntu Light";
     -fx-text-fill: white;
 }
 
 .scroll-pane {
-    -fx-background-color:transparent;
+    -fx-background-color: transparent;
 }
 
 .scroll-bar:horizontal .track,

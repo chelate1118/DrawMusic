@@ -2,11 +2,12 @@
 
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="775.0"  xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.draw.drawmusic.controllers.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="775.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.draw.drawmusic.controllers.MainViewController">
     <top>
-        <MenuBar prefHeight="10.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+        <MenuBar prefHeight="0.0" prefWidth="775.0" BorderPane.alignment="CENTER">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -38,16 +39,28 @@
         </MenuBar>
     </top>
    <left>
-      <VBox BorderPane.alignment="CENTER">
-         <children>
-             <ToolBar prefHeight="40.0" prefWidth="200.0" />
-            <ScrollPane fx:id="trackBarScrollPane" prefHeight="521.0" prefWidth="174.0">
+      <BorderPane>
+         <center>
+            <ScrollPane fx:id="trackBarScrollPane" prefWidth="174.0">
                <content>
-                  <VBox fx:id="trackBar" prefHeight="521.0" styleClass="track-bar" />
+                  <VBox fx:id="trackBarContent" styleClass="track-bar" />
                </content>
             </ScrollPane>
-         </children>
-      </VBox>
+         </center>
+         <top>
+             <ToolBar prefHeight="20.0" prefWidth="40.0" BorderPane.alignment="CENTER">
+               <items>
+                  <Button mnemonicParsing="false" styleClass="buttonInToolBar" prefHeight="17.5" prefWidth="17.5">
+                     <graphic>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@images/plus.png" requestedHeight="40.0" requestedWidth="40.0"/>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </items>
+            </ToolBar>
+         </top>
+      </BorderPane>
    </left>
    <center>
       <HBox BorderPane.alignment="TOP_LEFT">

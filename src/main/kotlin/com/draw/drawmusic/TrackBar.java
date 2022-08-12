@@ -5,27 +5,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 public class TrackBar {
+    private static VBox trackBarContent, trackBarResize;
     private static ScrollPane trackBarScrollPane;
-    private static VBox trackBarResize;
-    private static VBox trackBar;
-
-    public static void init(ScrollPane _trackBarScrollPane, VBox _trackBar, VBox _trackBarResize) {
-        trackBarScrollPane = _trackBarScrollPane;
-        trackBar           = _trackBar;
-        trackBarResize     = _trackBarResize;
-
-        manageSize();
-        enableMouseResize();
-    }
 
     private static double getTrackBarHeight() {
-        return 0.0;
-        // TODO : Track Bar 내부 성분에 따른 Height 를 구해야 함
+        return 700.0;
+        // TODO : Track Bar Element 에 따른 Height 를 구해야 함
     }
 
-    public static void manageSize() {
-        trackBarScrollPane.setPrefHeight(MainApplicationManager.Companion.getWindowHeight());
-        trackBar.setPrefHeight(Math.max(MainApplicationManager.Companion.getWindowHeight(), getTrackBarHeight()));
+    private static void setTrackBarHeight() {
+        trackBarScrollPane.heightProperty().addListener((_obs, _oldVal, newVal) -> {
+            trackBarContent.setPrefHeight(Math.max(getTrackBarHeight(), newVal.doubleValue()));
+            System.out.println(Math.max(getTrackBarHeight(), newVal.doubleValue()));
+        });
     }
 
     private static void enableMouseResize() {
@@ -34,5 +26,14 @@ public class TrackBar {
         trackBarResize.addEventFilter(MouseEvent.MOUSE_DRAGGED, e -> {
             trackBarScrollPane.setPrefWidth(trackBarScrollPane.getWidth() + e.getX());
         });
+    }
+
+    public static void init(VBox _trackBarContent, ScrollPane _trackBarScrollPane, VBox _trackBarResize) {
+        trackBarContent    = _trackBarContent;
+        trackBarScrollPane = _trackBarScrollPane;
+        trackBarResize     = _trackBarResize;
+
+        setTrackBarHeight();
+        enableMouseResize();
     }
 }
