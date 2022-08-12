@@ -6,16 +6,11 @@ import javafx.scene.Scene
 import javafx.scene.image.Image
 import javafx.stage.Stage
 
-fun main() {
-    Application.launch(MainApplicationManager::class.java)
-}
-
 enum class WindowSize {
     NOT_MAXIMIZED, IS_MAXIMIZED
 }
 
 class MainApplicationManager : Application(){
-
     companion object {
         var windowWidth  : Double = 800.0
         var windowHeight : Double = 500.0
@@ -25,7 +20,6 @@ class MainApplicationManager : Application(){
             val fxmlLoader = FXMLLoader(MainApplicationManager::class.java.getResource(fxmlFilePath))
             scene = Scene(fxmlLoader.load(), windowWidth, windowHeight)
         }
-
         private fun setStyle(cssFilePath : String) {
             scene.stylesheets.add(MainApplicationManager::class.java.getResource("css/".plus(cssFilePath))?.toString())
         }
@@ -44,6 +38,7 @@ class MainApplicationManager : Application(){
 
             stage.show()
         }
+
     }
 
     /*public fun addStage(fxmlFilePath: String, cssFilePath: String, title: String, iconPath: String, isMaximized: Boolean) {
@@ -59,4 +54,9 @@ class MainApplicationManager : Application(){
 
         stage.show()
     }
+
+}
+
+fun main() {
+    Application.launch(MainApplicationManager::class.java)
 }
