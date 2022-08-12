@@ -12,10 +12,12 @@ enum class WindowSize {
 
 class MainApplicationManager : Application(){
     companion object {
-        var windowWidth  : Double = 800.0
-        var windowHeight : Double = 500.0
+        var windowWidth  : Double = 960.0
+        var windowHeight : Double = 600.0
         lateinit var scene : Scene
         private var stage : Stage = Stage()
+        val minWidth : Double = 960.0
+        val minHeight : Double = 600.0
 
         private fun setScene(fxmlFilePath : String) {
             val fxmlLoader = FXMLLoader(MainApplicationManager::class.java.getResource(fxmlFilePath))
@@ -31,6 +33,8 @@ class MainApplicationManager : Application(){
             stage.scene = scene
             stage.icons.add(Image(MainApplicationManager::class.java.getResource("images/".plus(iconPath))?.toString()))
             stage.isMaximized = isMaximized == WindowSize.IS_MAXIMIZED
+            stage.minWidth = minWidth
+            stage.minHeight = minHeight
         }
 
         private fun setListenWindowSize() {

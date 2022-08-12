@@ -41,16 +41,16 @@
    <left>
       <BorderPane>
          <center>
-            <ScrollPane fx:id="trackBarScrollPane" prefWidth="174.0">
+            <ScrollPane fx:id="trackBarScrollPane" prefWidth="250.0">
                <content>
-                  <VBox fx:id="trackBarContent" styleClass="track-bar" />
+                  <VBox fx:id="trackBarContent" style="-fx-padding: 5 0 5 0;" styleClass="track-bar" />
                </content>
             </ScrollPane>
          </center>
          <top>
              <ToolBar prefHeight="20.0" prefWidth="40.0" BorderPane.alignment="CENTER">
                <items>
-                  <Button mnemonicParsing="false" styleClass="buttonInToolBar" prefHeight="17.5" prefWidth="17.5">
+                  <Button mnemonicParsing="false" styleClass="buttonInToolBar" prefHeight="17.5" prefWidth="17.5" onAction="#plusButtonClicked">
                      <graphic>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                             <Image url="@images/plus.png" requestedHeight="40.0" requestedWidth="40.0"/>
