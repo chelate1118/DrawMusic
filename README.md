@@ -16,4 +16,6 @@ File 기능 :<br>
  ㄴ Format : DrawMusic만의 파일 형식 제작 _(마크업 언어?)_<br>
  ㄴ Export : 미디, **뮤즈스코어 파일** 형식으로 export 가능<br>
  ㄴ Import : 미디 형식을 import 가능
- 
+
+PlayBack 기능<br>
+ ㄴ **ML : 미디를 자연스럽게 연주해줌**
