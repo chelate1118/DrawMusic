@@ -13,7 +13,7 @@ Paint + KeyBoard : 미디 편집기<br>
  ㄴ 성부 기능 : 트랙에 따른 분류가 아니라 한 트랙 안에서도 성부를 나눠 성부별로 편집할 수 있음
 
 File 기능 :<br>
- ㄴ Format : DrawMusic만의 파일 형식 제작 _(마크업 언어?)_ <br>
+ ㄴ Format : DrawMusic만의 파일 형식 제작 _(마크업 언어?)_<br>
  ㄴ Export : 미디, **뮤즈스코어 파일** 형식으로 export 가능<br>
  ㄴ Import : 미디 형식을 import 가능
  
