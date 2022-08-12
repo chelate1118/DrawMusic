@@ -3,7 +3,7 @@
 }
 
 .root {
-    -fx-background-color: #1E1E1E;
+    -fx-background-color: #CDCDCD;
 }
 
 .button {
@@ -16,17 +16,17 @@
 }
 
 .menu-bar {
-    -fx-background-color: #3B3B3B;
+    -fx-background-color: #A0A0A0;
 }
 
 .context-menu {
-    -fx-background-color: #3B3B3B;
-    -fx-border-color: #AAAAAA;
+    -fx-background-color: #A0A0A0;
+    -fx-border-color: #606060;
     -fx-pref-width: 150.0;
 }
 
 .track-bar {
-    -fx-background-color: #5A5A5A;
+    -fx-background-color: #8C8C8C;
 }
 
 .track-bar-resize:hover {
@@ -35,7 +35,7 @@
 
 .label {
     -fx-font-family: "Ubuntu Light";
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .scroll-pane {

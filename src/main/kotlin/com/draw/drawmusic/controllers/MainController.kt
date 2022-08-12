@@ -1,5 +1,6 @@
-package com.draw.drawmusic
+package com.draw.drawmusic.controllers
 
+import com.draw.drawmusic.TrackBar
 import javafx.fxml.Initializable
 import javafx.scene.control.ScrollPane
 import javafx.scene.layout.VBox
