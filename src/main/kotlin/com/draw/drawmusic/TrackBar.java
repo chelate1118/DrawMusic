@@ -15,8 +15,13 @@ public class TrackBar {
 
     private static void setTrackBarHeight() {
         trackBarScrollPane.heightProperty().addListener((_obs, _oldVal, newVal) -> {
-            trackBarContent.setPrefHeight(Math.max(getTrackBarHeight(), newVal.doubleValue()));
-            System.out.println(Math.max(getTrackBarHeight(), newVal.doubleValue()));
+            double trackBarHeight = getTrackBarHeight();
+            if(trackBarHeight < newVal.doubleValue()) {
+                trackBarScrollPane.setFitToHeight(true);
+            } else {
+                trackBarScrollPane.setFitToHeight(false);
+                trackBarContent.setPrefHeight(trackBarHeight);
+            }
         });
     }
 

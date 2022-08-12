@@ -3,7 +3,7 @@
 }
 
 .root {
-    -fx-background-color: #1E1E1E;
+    -fx-background-color: #505050;
 }
 
 .button {
@@ -20,7 +20,11 @@
 }
 
 .buttonInToolBar:hover {
-    -fx-background-color: derive(white, 90%);
+    -fx-background-color: #FFFFFF18;
+}
+
+.buttonInToolBar:pressed {
+    -fx-background-color: #FFFFFF30;
 }
 
 .menu-bar {
@@ -33,7 +37,12 @@
     -fx-pref-width: 150.0;
 }
 
-.track-bar {
+.tool-bar {
+    -fx-background-color: #5A5A5A;
+    -fx-border-color: #303030;
+}
+
+.track-bar, .scroll-bar {
     -fx-background-color: #5A5A5A;
 }
 
@@ -45,7 +54,6 @@
     -fx-background-color: #FF0000;
 }
 
-
 .label {
     -fx-font-family: "Ubuntu Light";
     -fx-text-fill: white;
@@ -53,42 +61,25 @@
 
 .scroll-pane {
     -fx-background-color: transparent;
+    -fx-border-color: #303030;
 }
 
-.scroll-bar:horizontal .track,
-.scroll-bar:vertical .track {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-background-radius: 0.0em;
-}
-
-.scroll-bar:vertical .increment-button ,
-.scroll-bar:vertical .decrement-button {
-    -fx-background-color :transparent;
-    -fx-background-radius : 0.0em;
-    -fx-padding :0.0 10.0 0.0 0.0;
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button{
+    -fx-pref-width: 0.0;
+    -fx-pref-height: 0.0;
 }
 
 .scroll-bar .increment-arrow,
-.scroll-bar .decrement-arrow{
-    -fx-shape : " ";
-    -fx-padding :0.15em 0.0;
+.scroll-bar .decrement-arrow {
+    -fx-shape: " ";
 }
 
-.scroll-bar:vertical .increment-arrow,
-.scroll-bar:vertical .decrement-arrow{
-    -fx-shape : " ";
-    -fx-padding :0.0 0.15em;
+.scroll-bar .thumb {
+    -fx-background-color: #FFFFFF30;
+    -fx-background-radius: 0.0em;
 }
 
-.scroll-bar:vertical .thumb {
-    -fx-background-color :derive(black,90.0%);
-    -fx-background-insets : 2.0, 0.0, 0.0;
-    -fx-background-radius : 2.0em;
-}
-
-.scroll-bar:vertical .thumb:hover {
-    -fx-background-color :derive(#4D4C4F,10.0%);
-    -fx-background-insets : 2.0, 0.0, 0.0;
-    -fx-background-radius : 2.0em;
+.scroll-bar .thumb:hover {
+    -fx-background-color: #FFFFFF50;
 }
