@@ -12,16 +12,19 @@ enum class WindowSize {
 
 class MainApplicationManager : Application(){
     companion object {
-        var windowWidth  : Double = 960.0
-        var windowHeight : Double = 600.0
-        lateinit var scene : Scene
-        private var stage : Stage = Stage()
-        val minWidth : Double = 960.0
-        val minHeight : Double = 600.0
+        private const val    DEFAULT_WIDTH  : Double = 1200.0
+        private const val    DEFAULT_HEIGHT : Double = 800.0
+        private lateinit var scene : Scene
+        private var          stage : Stage = Stage()
+        private const val    MIN_WIDTH : Double = 960.0
+        private const val    MIN_HEIGHT : Double = 600.0
+        public fun getResourceAsString(path : String): String? {
+            return MainApplicationManager::class.java.getResource(path)?.toString()
+        }
 
         private fun setScene(fxmlFilePath : String) {
             val fxmlLoader = FXMLLoader(MainApplicationManager::class.java.getResource(fxmlFilePath))
-            scene = Scene(fxmlLoader.load(), windowWidth, windowHeight)
+            scene = Scene(fxmlLoader.load(), DEFAULT_WIDTH, DEFAULT_HEIGHT)
         }
 
         private fun setStyle(cssFilePath : String) {
@@ -33,18 +36,8 @@ class MainApplicationManager : Application(){
             stage.scene = scene
             stage.icons.add(Image(MainApplicationManager::class.java.getResource("images/".plus(iconPath))?.toString()))
             stage.isMaximized = isMaximized == WindowSize.IS_MAXIMIZED
-            stage.minWidth = minWidth
-            stage.minHeight = minHeight
-        }
-
-        private fun setListenWindowSize() {
-            stage.widthProperty().addListener{ _, _, newVal -> run{
-                windowWidth = newVal as Double
-            }}
-
-            stage.heightProperty().addListener{ _, _, newVal -> run{
-                windowHeight = newVal as Double
-            }}
+            stage.minWidth = MIN_WIDTH
+            stage.minHeight = MIN_HEIGHT
         }
 
         fun changeStage(fxmlFilePath: String, cssFilePath: String, title: String,
@@ -52,7 +45,6 @@ class MainApplicationManager : Application(){
             setScene(fxmlFilePath)
             setStyle(cssFilePath)
             setStage(title, iconPath, isMaximized)
-            setListenWindowSize()
 
             stage.show()
         }
