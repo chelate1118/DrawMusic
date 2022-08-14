@@ -18,7 +18,7 @@ class MainApplicationManager : Application(){
         private var          stage : Stage = Stage()
         private const val    MIN_WIDTH : Double = 960.0
         private const val    MIN_HEIGHT : Double = 600.0
-        public fun getResourceAsString(path : String): String? {
+        fun getResourceAsString(path : String): String? {
             return MainApplicationManager::class.java.getResource(path)?.toString()
         }
 

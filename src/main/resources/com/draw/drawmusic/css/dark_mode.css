@@ -51,11 +51,11 @@
 }
 
 .debug {
-    -fx-background-color: #FF0000;
+    -fx-background-color: red;
 }
 
 .label {
-    -fx-font-family: "Ubuntu Light";
+    -fx-font-family: "JetBrains Mono";
     -fx-text-fill: white;
 }
 

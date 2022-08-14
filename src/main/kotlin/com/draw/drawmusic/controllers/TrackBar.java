@@ -5,6 +5,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class TrackBar { // This class doesn't need instance. Every field and method is static.
@@ -29,7 +30,8 @@ public class TrackBar { // This class doesn't need instance. Every field and met
         enableMouseResize();
     }
 
-    public static void addElement() {
+    public static void addElement() throws IOException {
+        Palette.init("colors/dark_mode.json");
         TrackElement newElement = new TrackElement(Color.CYAN, Instrument.Grandpiano);
         elements.add(newElement);
     }

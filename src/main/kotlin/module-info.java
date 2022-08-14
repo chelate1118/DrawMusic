@@ -6,6 +6,7 @@ module com.draw.drawmusic {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+    requires org.json;
 
     opens com.draw.drawmusic.controllers to javafx.fxml;
     exports com.draw.drawmusic;
