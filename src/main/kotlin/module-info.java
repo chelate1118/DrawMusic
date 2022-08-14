@@ -11,4 +11,7 @@ module com.draw.drawmusic {
     opens com.draw.drawmusic.controllers to javafx.fxml;
     exports com.draw.drawmusic;
     exports com.draw.drawmusic.controllers;
+    exports com.draw.drawmusic.track;
+    exports com.draw.drawmusic.properties;
+    exports com.draw.drawmusic.tools;
 }

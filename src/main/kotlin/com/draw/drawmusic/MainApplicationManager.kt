@@ -51,14 +51,6 @@ class MainApplicationManager : Application(){
 
     }
 
-    /*public fun addStage(fxmlFilePath: String, cssFilePath: String, title: String, iconPath: String, isMaximized: Boolean) {
-        setScene(fxmlFilePath)
-        setStyle(cssFilePath)
-        setStage(title, iconPath, isMaximized)
-
-        stage.show()
-    }*/
-
     override fun start(primaryStage: Stage) {
         changeStage("start-view.fxml", "light_mode.css",
             "Draw Music", "icon.png", WindowSize.NOT_MAXIMIZED)

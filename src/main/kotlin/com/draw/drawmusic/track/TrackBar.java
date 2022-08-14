@@ -1,11 +1,12 @@
-package com.draw.drawmusic.controllers;
+package com.draw.drawmusic.track;
 
+import com.draw.drawmusic.properties.Instrument;
+import com.draw.drawmusic.properties.Palette;
+import com.draw.drawmusic.tools.CalculatorException;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class TrackBar { // This class doesn't need instance. Every field and method is static.
@@ -17,9 +18,8 @@ public class TrackBar { // This class doesn't need instance. Every field and met
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
 
-        resizeBar.addEventFilter(MouseEvent.MOUSE_DRAGGED, e -> {
-            scrollPane.setPrefWidth(scrollPane.getWidth() + e.getX());
-        });
+        resizeBar.addEventFilter(MouseEvent.MOUSE_DRAGGED, e ->
+                scrollPane.setPrefWidth(scrollPane.getWidth() + e.getX()));
     }
 
     public static void init(VBox _trackBarContent, ScrollPane _trackBarScrollPane, VBox _trackBarResize) {
@@ -30,13 +30,12 @@ public class TrackBar { // This class doesn't need instance. Every field and met
         enableMouseResize();
     }
 
-    public static void addElement() throws IOException {
-        Palette.init("colors/dark_mode.json");
-        TrackElement newElement = new TrackElement(Color.CYAN, Instrument.Grandpiano);
+    public static void addElement() {
+        TrackElement newElement = new TrackElement(Palette.next(), Instrument.Grandpiano);
         elements.add(newElement);
     }
 
-    public static void showElements() {
+    public static void showElements() throws CalculatorException {
         contentBar.getChildren().clear();
         for (TrackElement element: elements) {
             contentBar.getChildren().add(element.drawInTrackToHBox());
