@@ -41,7 +41,7 @@ public class TrackBar { // This class does not require any instances. Every fiel
         fadeInElement(contentBar.getChildren().get(elements.size() - 1));
     }
 
-    public static void showElements() throws CalculatorException {
+    public static void showElements() {
         contentBar.getChildren().clear();
         for (TrackElement element: elements) {
             contentBar.getChildren().add(element.getGridPane());

@@ -5,7 +5,6 @@ import com.draw.drawmusic.properties.Palette;
 import com.draw.drawmusic.tools.CalculatorException;
 import javafx.geometry.Insets;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 
@@ -39,10 +38,9 @@ public class TrackElement {
     }
 
     private void setChooseInstrument() throws CalculatorException {
-        chooseInstrument = new MenuButton();
+        chooseInstrument = Instrument.makeInstrumentPicker();
         chooseInstrument.setBackground(new Background(new BackgroundFill(palette.getDarkColor(1.0, 1.0),
                 new CornerRadii(2.0), Insets.EMPTY)));
-        chooseInstrument.getItems().add(new MenuItem(instrument.getName(), instrument.toIconImageView(20.0)));
         GridPane.setHgrow(chooseInstrument, Priority.ALWAYS);
         GridPane.setMargin(chooseInstrument, new Insets(8, 0, 8, 0));
     }
