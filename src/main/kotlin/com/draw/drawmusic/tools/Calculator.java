@@ -3,7 +3,6 @@ package com.draw.drawmusic.tools;
 public class Calculator {
     private static final double SIGMOID_MAX_APPROXIMATION = 5.0;
     private static final double SIGMOID_MIN_APPROXIMATION = -5.0;
-    private static final double SIGMOID_MAX_CHANGE_VALUE = 5.0;
 
     private static double sigmoid(double x) {
         if(x > SIGMOID_MAX_APPROXIMATION) return 1;
@@ -30,7 +29,6 @@ public class Calculator {
 
     public static double changeWithSigmoidInRange(double min, double max, double val, double change) throws CalculatorException {
         if(min >= max) throw new CalculatorException("Minimum value is greater than maximum value or the range is too small");
-        if(Math.abs(change) > SIGMOID_MAX_CHANGE_VALUE) throw new CalculatorException("Change amount is too big or small");
         return changeValueLinearly(sigmoid(sigmoidInverse(
                 changeValueLinearly(val, min, max, 0, 1)) + change),
                 0, 1, min, max);

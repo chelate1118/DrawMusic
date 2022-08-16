@@ -10,7 +10,7 @@ enum class WindowSize {
     NOT_MAXIMIZED, IS_MAXIMIZED
 }
 
-class MainApplicationManager : Application(){
+class MainApplicationManager : Application() {
     companion object {
         private const val    DEFAULT_WIDTH  : Double = 1200.0
         private const val    DEFAULT_HEIGHT : Double = 800.0

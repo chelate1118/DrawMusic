@@ -13,13 +13,12 @@ class MainViewController : Initializable {
     lateinit var trackBarScrollPane : ScrollPane
     lateinit var trackBarResize: VBox
 
-    fun plusButtonClicked(){
+    fun plusButtonClicked() {
         TrackBar.addElement()
-        TrackBar.showElements()
     }
 
     override fun initialize(p0: URL?, p1: ResourceBundle?) {
         TrackBar.init(trackBarContent, trackBarScrollPane, trackBarResize)
-        Palette.init("dark_mode.json")
+        Palette.init("light_mode.json")
     }
 }

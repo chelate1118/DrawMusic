@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Iterator;
 
-public class Palette {
+public record Palette(Color color) {
     private static String theme;
     private static JSONObject jsonObject;
     private static Iterator<String> generateNext;
@@ -27,24 +27,17 @@ public class Palette {
     }
 
     public static Palette next() {
-        if(!generateNext.hasNext())
+        if (!generateNext.hasNext())
             generateNext = jsonObject.keys();
         return new Palette(Color.web(jsonObject.getString(generateNext.next())));
     }
 
-    private Color color;
-
-    public Palette(Color color) { this.color = color; }
-    public void setColor(Color color) { this.color = color; }
-
-    public Color getColor() { return color; }
-    public Color getDarkColor(double change) throws CalculatorException {
-        System.out.println(color.getBrightness());
+    public Color getDarkColor(double change, double alpha) throws CalculatorException {
         return Color.hsb(color.getHue(), color.getSaturation(),
-                Calculator.changeWithSigmoid(color.getBrightness(), -change));
+                Calculator.changeWithSigmoid(color.getBrightness(), -change), alpha);
     }
 
-    public Color getBrightColor(double change) throws CalculatorException {
-        return getDarkColor(-change);
+    public Color getBrightColor(double change, double alpha) throws CalculatorException {
+        return getDarkColor(-change, alpha);
     }
 }
