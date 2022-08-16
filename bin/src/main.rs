@@ -1,5 +1,6 @@
 mod calculator;
 mod interact;
+use std::thread;
 
 fn main() {
     loop {
