@@ -1,19 +1,31 @@
 mod calculator;
-mod interact;
+mod sound;
+
 use std::thread;
+
+fn input() -> String {
+    let mut tmp : String = String::new();
+    std::io::stdin().read_line(&mut tmp).ok();
+
+    tmp.trim().to_string()
+}
 
 fn main() {
     loop {
-        match interact::input().trim() {
+        match input().trim() {
             "c s" => {
-                calculator::sum(interact::input())
+                calculator::sum(input())
             },
 
             "c m" => {
-                calculator::multiple(interact::input())
+                calculator::multiple(input())
             },
 
-            "t" => { break; }
+            "s g" => {
+
+            },
+
+            "t" => { break; },
             _ => { println!("error") }
         }
     }
