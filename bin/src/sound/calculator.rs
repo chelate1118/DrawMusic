@@ -1,9 +1,10 @@
+
 use num_bigint::BigInt;
 use num_traits::{Num, Zero, One};
 
-pub(crate) fn sum(input : String) {
+pub(crate) fn sum(command : String) {
     let mut ans: BigInt = BigInt::zero();
-    for i in input.split_whitespace() {
+    for i in command.split_whitespace() {
         match BigInt::from_str_radix(i, 10) {
             Ok(val) => { ans += val; }
             Err(_) => {
@@ -15,9 +16,9 @@ pub(crate) fn sum(input : String) {
     println!("{}", ans.to_string());
 }
 
-pub(crate) fn multiple(input : String) {
+pub(crate) fn multiple(command: String) {
     let mut ans: BigInt = BigInt::one();
-    for i in input.split_whitespace() {
+    for i in command.split_whitespace() {
         match BigInt::from_str_radix(i, 10) {
             Ok(val) => { ans *= val; }
             Err(_) => {

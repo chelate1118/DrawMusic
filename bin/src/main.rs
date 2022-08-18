@@ -1,4 +1,3 @@
-mod calculator;
 mod sound;
 
 use sound::Sound;
@@ -13,16 +12,12 @@ fn input() -> String {
 fn main() {
     loop {
         match input().trim() {
-            "c s" => {
-                calculator::sum(input())
-            },
-
-            "c m" => {
-                calculator::multiple(input())
-            },
-
             "s p" => {
                 Sound::play(input());
+            },
+
+            "s g" => {
+                Sound::generate(input())
             },
 
             "t" => { break; },
