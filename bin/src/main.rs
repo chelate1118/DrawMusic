@@ -1,7 +1,6 @@
 mod calculator;
 mod sound;
 
-use std::thread;
 use sound::Sound;
 
 fn input() -> String {
