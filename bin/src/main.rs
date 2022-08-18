@@ -2,6 +2,7 @@ mod calculator;
 mod sound;
 
 use std::thread;
+use sound::Sound;
 
 fn input() -> String {
     let mut tmp : String = String::new();
@@ -21,8 +22,8 @@ fn main() {
                 calculator::multiple(input())
             },
 
-            "s g" => {
-
+            "s p" => {
+                Sound::play(input());
             },
 
             "t" => { break; },

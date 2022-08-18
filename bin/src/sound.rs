@@ -3,16 +3,20 @@ use std::fs::File;
 use std::io::BufReader;
 use rodio::{Decoder, OutputStream, source::Source};
 
-struct Sound {
+pub(crate) struct Sound {
 
 }
 
 impl Sound {
-    fn play(path : String)
+    const PATH : &'static str = "src/main/resources/com/draw/drawmusic/sound_rust/";
+
+    pub(crate) fn play(file_name: String)
     {
         let (_stream, stream_handle) = OutputStream::try_default().unwrap();
 
-        let file = BufReader::new(File::open(path).unwrap());
+        println!("{}", format!("{}{}", Sound::PATH, file_name));
+
+        let file = BufReader::new(File::open(format!("{}{}", Sound::PATH, file_name)).unwrap());
         let source = Decoder::new(file).unwrap();
         stream_handle.play_raw(source.convert_samples()).ok();
 
