@@ -1,18 +1,18 @@
-#![allow(unused_imports)]
-#![allow(unused_variables)]
-#![allow(unused_assignments)]
-#![allow(dead_code)]
+#![allow(unused)]
 
 mod calculator;
 
 use std::thread;
 use std::fs::File;
+use std::fs;
 use std::io::BufReader;
+use calculator::Polynomial;
 use hound;
 use rodio::{Decoder, OutputStream, source::Source};
 use std::f32::consts::PI;
 
 pub(crate) struct Sound {
+    amp : Polynomial,
 
 }
 
@@ -43,8 +43,7 @@ impl Sound {
         }
     }
 
-    pub(crate) fn play(file_name: String)
-    {
+    pub(crate) fn play(file_name: String) {
         let (_stream, stream_handle) = OutputStream::try_default().unwrap();
 
         let file = BufReader::new(File::open(format!("{}{}", Sound::PATH, file_name)).unwrap());
@@ -52,5 +51,13 @@ impl Sound {
         stream_handle.play_raw(source.convert_samples()).ok();
 
         thread::sleep(std::time::Duration::from_millis(700));
+    }
+
+    pub(crate) fn init() {
+        let paths = fs::read_dir(Sound::PATH).unwrap();
+
+        for path in paths {
+            fs::remove_file(path.unwrap().path().to_str().unwrap());
+        }
     }
 }
