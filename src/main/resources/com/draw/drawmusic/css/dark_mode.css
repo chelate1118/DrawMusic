@@ -83,3 +83,7 @@
 .scroll-bar .thumb:hover {
     -fx-background-color: #FFFFFF50;
 }
+
+.menu-button > .arrow.button {
+    -fx-background-color: #FFFFFF50
+}

@@ -10,6 +10,8 @@ fn input() -> String {
 }
 
 fn main() {
+    Sound::init();
+
     loop {
         match input().trim() {
             "s p" => {

@@ -5,13 +5,13 @@ import com.draw.drawmusic.properties.Palette;
 import com.draw.drawmusic.tools.CalculatorException;
 import javafx.geometry.Insets;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 
 public class TrackElement {
-    private final Palette    palette;
-    private final Instrument instrument;
-
+    private Palette    palette;
+    private Instrument instrument;
     private void makeShape() throws CalculatorException {
         setColorCircle();
         setChooseInstrument();
@@ -25,6 +25,8 @@ public class TrackElement {
         makeShape();
     }
 
+
+    private static final double MENU_BUTTON_WIDTH = 120.0;
     private static final double BRIGHTER_AMOUNT = 3.0;
     private Circle     colorCircle;
     private MenuButton chooseInstrument;
@@ -41,6 +43,20 @@ public class TrackElement {
         chooseInstrument = Instrument.makeInstrumentPicker();
         chooseInstrument.setBackground(new Background(new BackgroundFill(palette.getDarkColor(1.0, 1.0),
                 new CornerRadii(2.0), Insets.EMPTY)));
+        chooseInstrument.setPrefWidth(MENU_BUTTON_WIDTH);
+        chooseInstrument.setText(instrument.getName());
+
+        for(MenuItem x : chooseInstrument.getItems()) {
+            x.setOnAction(actionEvent -> {
+                try {
+                    instrument = Instrument.fromName(x.getText());
+                    chooseInstrument.setText(x.getText());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+
         GridPane.setHgrow(chooseInstrument, Priority.ALWAYS);
         GridPane.setMargin(chooseInstrument, new Insets(8, 0, 8, 0));
     }

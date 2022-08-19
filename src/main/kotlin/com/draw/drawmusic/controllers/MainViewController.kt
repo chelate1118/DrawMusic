@@ -1,6 +1,7 @@
 package com.draw.drawmusic.controllers
 
 import com.draw.drawmusic.properties.Palette
+import com.draw.drawmusic.tools.InteractBin
 import com.draw.drawmusic.track.TrackBar
 import javafx.fxml.Initializable
 import javafx.scene.control.ScrollPane
@@ -20,5 +21,6 @@ class MainViewController : Initializable {
     override fun initialize(p0: URL?, p1: ResourceBundle?) {
         TrackBar.init(trackBarContent, trackBarScrollPane, trackBarResize)
         Palette.init("light_mode.json")
+        InteractBin.connect()
     }
 }
