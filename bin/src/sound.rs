@@ -6,13 +6,13 @@ use std::thread;
 use std::fs::File;
 use std::fs;
 use std::io::BufReader;
-use calculator::Polynomial;
 use hound;
 use rodio::{Decoder, OutputStream, source::Source};
 use std::f32::consts::PI;
+use crate::sound::calculator::Spline;
 
 pub(crate) struct Sound {
-    amp : Polynomial,
+    amp : Spline,
 
 }
 

@@ -12,12 +12,13 @@ enum class WindowSize {
 
 class MainApplicationManager : Application() {
     companion object {
-        private const val    DEFAULT_WIDTH  : Double = 1200.0
-        private const val    DEFAULT_HEIGHT : Double = 800.0
-        private lateinit var scene : Scene
-        private var          stage : Stage = Stage()
-        private const val    MIN_WIDTH : Double = 960.0
-        private const val    MIN_HEIGHT : Double = 600.0
+        private const val DEFAULT_WIDTH  : Double = 1200.0
+        private const val DEFAULT_HEIGHT : Double = 800.0
+        private const val MIN_WIDTH : Double = 960.0
+        private const val MIN_HEIGHT : Double = 600.0
+
+        lateinit var      scene : Scene
+        var               stage : Stage = Stage()
         fun getResourceAsString(path : String): String? {
             return MainApplicationManager::class.java.getResource(path)?.toString()
         }

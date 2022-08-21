@@ -7,6 +7,8 @@ module com.draw.drawmusic {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires org.json;
+    requires gov.nist.math.jama;
+    requires annotations;
 
     opens com.draw.drawmusic.controllers to javafx.fxml;
     exports com.draw.drawmusic;

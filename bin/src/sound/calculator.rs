@@ -31,45 +31,69 @@ pub(crate) fn multiple(command: String) {
     println!("{}", ans.to_string());
 }
 
+
 pub(crate) struct Polynomial {
-    dim : usize,
     val : Vec<f64>
 }
 
 impl Polynomial {
-    /*pub(crate) fn new(command : String) -> Polynomial {
-        let x = command.split_whitespace();
-        let x = x.collect::<Vec<String>>();
-        let mut ret = Polynomial {
-            dim : x[0].parse().unwrap(),
-            val : Vec::new()
-        };
-        assert_eq!(ret.dim, x.len() - 1);
-        for i in 0..ret.dim {
-            ret.val.push(x[i + 1].parse().unwrap());
+    pub(crate) fn from_string(x : String) -> Polynomial {
+        let mut ret = Polynomial { val : Vec::new() };
+
+        let sp = x.split('$');
+        for i in sp {
+            ret.val.push(i.parse::<f64>().unwrap());
         }
+
         ret
-    }*/
-
-    pub(crate) fn to_string(&self) -> String {
-        let mut ans = self.dim.to_string();
-
-        for i in 0..self.dim {
-            ans.push(' ');
-            ans.push_str(&self.val[i].to_string());
-        }
-
-        ans
     }
 
     pub(crate) fn value(&self, x : f64) -> f64 {
         let mut ans = 0f64;
 
-        for i in 0..self.dim {
+        for i in self.val.iter() {
             ans *= x;
-            ans += self.val[i];
+            ans += i;
         }
 
         ans
+    }
+}
+
+pub(crate) struct Spline {
+    val : Vec<(f64, f64, Polynomial)>
+}
+
+impl Spline {
+    pub(crate) fn from_string(x : String) -> Spline {
+        let mut ret = Spline { val : Vec::new() };
+
+        let sp = x.split('#');
+        for i in sp {
+            let tmp = i.split_whitespace().collect::<Vec<&str>>();
+            ret.val.push((tmp[0].parse().unwrap(), tmp[1].parse().unwrap(),
+                          Polynomial::from_string(tmp[2].to_string())));
+        }
+
+        ret
+    }
+
+    fn find(&self, x : f64, st : usize) -> Option<usize> {
+        if x < self.val[0].0 {
+            return None;
+        }
+        for i in st..self.val.len() {
+            if x >= self.val[i].0 && x <= self.val[i].1 {
+                return Some(i);
+            }
+        }
+        None
+    }
+
+    pub(crate) fn value(&self, x : f64, st : usize) -> Option<(f64, usize)> {
+        match self.find(x, st) {
+            Some(i) => Some((self.val[i].2.value(x), i)),
+            None => None
+        }
     }
 }

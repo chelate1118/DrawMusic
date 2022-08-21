@@ -37,4 +37,9 @@ public class Calculator {
     public static double changeWithSigmoid(double val, double change) throws CalculatorException {
         return changeWithSigmoidInRange(0, 1, val, change);
     }
+
+    public static double harmonicMean(double x, double y) {
+        if(x == 0 || y == 0) return 0;
+        return 2 / (1 / x + 1 / y);
+    }
 }
