@@ -14,6 +14,4 @@ public abstract class Coordinate implements Comparable<Coordinate> {
     public int compareTo(@NotNull Coordinate o) {
         return Double.compare(x, o.x);
     }
-
-    public abstract void setDy(Coordinate pre, Coordinate nex);
 }

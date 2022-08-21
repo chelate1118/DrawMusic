@@ -12,15 +12,14 @@ import java.util.*
 class MainViewController : Initializable {
     lateinit var trackBarContent: VBox
     lateinit var trackBarScrollPane : ScrollPane
-    lateinit var trackBarResize: VBox
 
     fun plusButtonClicked() {
         TrackBar.addElement()
     }
 
     override fun initialize(p0: URL?, p1: ResourceBundle?) {
-        TrackBar.init(trackBarContent, trackBarScrollPane, trackBarResize)
         Palette.init("light_mode.json")
+        TrackBar.init(trackBarContent, trackBarScrollPane)
         InteractBin.connect()
     }
 }

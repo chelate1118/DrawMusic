@@ -57,6 +57,7 @@
 .label {
     -fx-font-family: Ubuntu;
     -fx-text-fill: white;
+    -fx-font-size: 10pt;
 }
 
 .scroll-pane {

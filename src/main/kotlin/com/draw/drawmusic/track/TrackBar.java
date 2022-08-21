@@ -6,31 +6,37 @@ import com.draw.drawmusic.tools.CalculatorException;
 import javafx.animation.FadeTransition;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
 
 public class TrackBar { // This class does not require any instances. Every field and method is static.
-    private static VBox contentBar, resizeBar;
+    private static VBox contentBar;
     private static ScrollPane scrollPane;
     private static final ArrayList<TrackElement> elements = new ArrayList<>();
+    private static final ArrayList<Integer> selected = new ArrayList<>();
 
-    private static void enableMouseResize() {
+    private static void fitSize() {
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
-
-        resizeBar.addEventFilter(MouseEvent.MOUSE_DRAGGED, e ->
-                scrollPane.setPrefWidth(scrollPane.getWidth() + e.getX()));
     }
 
-    public static void init(VBox _trackBarContent, ScrollPane _trackBarScrollPane, VBox _trackBarResize) {
+    public static void init(VBox _trackBarContent, ScrollPane _trackBarScrollPane) {
         contentBar = _trackBarContent;
         scrollPane = _trackBarScrollPane;
-        resizeBar  = _trackBarResize;
 
-        enableMouseResize();
+        fitSize();
+    }
+
+    public static void addSelected(TrackElement element, boolean ctrlClicked) {
+        if(!ctrlClicked) {
+            selected.clear();
+            selected.trimToSize();
+        }
+
+        selected.add(elements.indexOf(element));
+        System.out.println("Track bar element has selected : " + selected);
     }
 
     public static void addElement() throws CalculatorException {
@@ -38,7 +44,10 @@ public class TrackBar { // This class does not require any instances. Every fiel
         elements.add(newElement);
 
         showElements();
+        addSelected(newElement, false);
         fadeInElement(contentBar.getChildren().get(elements.size() - 1));
+
+        System.out.println("New track bar element added : " + newElement);
     }
 
     public static void showElements() {

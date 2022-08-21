@@ -8,7 +8,6 @@ public class SplineJoint extends Coordinate {
         this.dy = dy;
     }
 
-    @Override
     public void setDy(Coordinate pre, Coordinate nex) {
         dy = Calculator.harmonicMean((x - pre.x) / (y - pre.y), (x - nex.x) / (y - nex.y));
     }

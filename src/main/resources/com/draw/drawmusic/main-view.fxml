@@ -50,10 +50,10 @@
          <top>
              <ToolBar prefHeight="20.0" prefWidth="40.0" BorderPane.alignment="CENTER">
                <items>
-                  <Button mnemonicParsing="false" styleClass="buttonInToolBar" prefHeight="17.5" prefWidth="17.5" onAction="#plusButtonClicked">
+                  <Button mnemonicParsing="false" onAction="#plusButtonClicked" prefHeight="17.5" prefWidth="17.5" styleClass="buttonInToolBar">
                      <graphic>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@images/plus.png" requestedHeight="40.0" requestedWidth="40.0"/>
+                            <Image requestedHeight="40.0" requestedWidth="40.0" url="@images/plus.png" />
                         </ImageView>
                      </graphic>
                   </Button>
@@ -63,15 +63,10 @@
       </BorderPane>
    </left>
    <center>
-      <HBox BorderPane.alignment="TOP_LEFT">
+      <StackPane prefHeight="502.0" prefWidth="601.0">
          <children>
-            <VBox fx:id="trackBarResize" prefHeight="502.0" prefWidth="4.0" styleClass="track-bar-resize" />
-            <StackPane prefHeight="502.0" prefWidth="601.0">
-               <children>
-                  <Group StackPane.alignment="TOP_LEFT" />
-               </children>
-            </StackPane>
+            <Group StackPane.alignment="TOP_LEFT" />
          </children>
-      </HBox>
+      </StackPane>
    </center>
 </BorderPane>
