@@ -36,7 +36,7 @@ public class TrackBar { // This class does not require any instances. Every fiel
         }
 
         selected.add(elements.indexOf(element));
-        System.out.println("Track bar element has selected : " + selected);
+        System.out.println("[TrackBar : addSelected()] Track has selected : " + selected);
     }
 
     public static void addElement() throws CalculatorException {
@@ -47,7 +47,7 @@ public class TrackBar { // This class does not require any instances. Every fiel
         addSelected(newElement, false);
         fadeInElement(contentBar.getChildren().get(elements.size() - 1));
 
-        System.out.println("New track bar element added : " + newElement);
+        System.out.println("[TrackBar : addElement()] New track added : " + newElement);
     }
 
     public static void showElements() {

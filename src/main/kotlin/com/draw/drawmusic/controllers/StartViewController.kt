@@ -8,6 +8,6 @@ class StartViewController {
     @FXML
     fun buttonClicked() {
         MainApplicationManager.changeStage("main-view.fxml", "dark_mode.css", "Draw Music!",
-                                    "icon.png", WindowSize.IS_MAXIMIZED)
+                                    "icon.png", WindowSize.NOT_MAXIMIZED)
     }
 }

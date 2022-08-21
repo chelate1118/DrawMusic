@@ -63,8 +63,8 @@ public class Spline {
     private void calculateSpline() {
         int siz = points.size();
         for(int i = 0; i < siz; i++) {
-            points.set(i, new SplineJoint(points.get(i), 0));
-            if(i > 0 && i < siz - 1) points.get(i).setDy(points.get(i - 1), points.get(i + 1));
+            points.set(i, new SplineJoint(points.get(i).x, points.get(i).y, 0));
+            if(i > 0 && i < siz - 1) points.get(i).calculateDy(points.get(i - 1), points.get(i + 1));
         }
         fun.clear();
         fun.trimToSize();

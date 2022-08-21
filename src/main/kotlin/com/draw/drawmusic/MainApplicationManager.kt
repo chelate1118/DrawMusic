@@ -53,7 +53,7 @@ class MainApplicationManager : Application() {
     }
 
     override fun start(primaryStage: Stage) {
-        changeStage("start-view.fxml", "light_mode.css",
+        changeStage("start-view.fxml", "dark_mode.css",
             "Draw Music", "icon.png", WindowSize.NOT_MAXIMIZED)
 
         stage.show()

@@ -1,10 +1,9 @@
 package com.draw.drawmusic.notes;
 
-import com.draw.drawmusic.tools.Coordinate;
+import javafx.scene.shape.Rectangle;
 
-public class MusicNote extends Coordinate {
-
-    public MusicNote(double _x, double _y) {
-        super(_x, _y);
-    }
+public abstract class MusicNote {
+    public abstract Rectangle toShape();
+    public abstract void playImmediate();
+    public abstract void play();
 }

@@ -1,5 +1,6 @@
 package com.draw.drawmusic.track;
 
+import com.draw.drawmusic.notes.Editor;
 import com.draw.drawmusic.properties.Instrument;
 import com.draw.drawmusic.properties.Palette;
 import com.draw.drawmusic.tools.CalculatorException;
@@ -14,15 +15,26 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class TrackElement {
-    private Palette      palette;
-    private Instrument   instrument;
-    private String       trackName;
+    private Palette    palette;
+    private Instrument instrument;
+    private String     trackName;
+    private Editor     editor;
     TrackElement(Palette _palette, Instrument _instrument) throws CalculatorException {
         palette    = _palette;
         instrument = _instrument;
         trackName = "";
 
+        editor = new Editor(this);
+        editor.show();
         makeShape();
+    }
+
+    public Palette getPalette() {
+        return palette;
+    }
+
+    public Instrument getInstrument() {
+        return instrument;
     }
 
     private static final double ELEMENT_WIDTH = 120.0;
