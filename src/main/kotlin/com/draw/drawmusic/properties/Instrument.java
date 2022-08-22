@@ -1,5 +1,8 @@
 package com.draw.drawmusic.properties;
 
+import com.draw.drawmusic.notes.PianoNote;
+import com.draw.drawmusic.notes.PlayNote;
+import com.draw.drawmusic.notes.ViolinNote;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 
@@ -19,6 +22,15 @@ public class Instrument {
 
     public void addInstrument() {
 
+    }
+
+    public PlayNote makeNote() {
+        switch(index) {
+            case 1:
+                return new PianoNote();
+            default:
+                return new ViolinNote();
+        }
     }
 
     public static MenuButton makeInstrumentPicker() {

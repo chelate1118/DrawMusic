@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.layout.StackPane;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Editor {
@@ -22,12 +23,17 @@ public class Editor {
     }
 
     private final Group group = new Group();
-    private final ArrayList<MusicNote> notes = new ArrayList<>();
+    private final ArrayList<MusicNote> display = new ArrayList<>();
+    private final ArrayList<PlayNote> playNotes = new ArrayList<>();
 
     public void show() {
-        notes.add(new PianoNote());
-        for(MusicNote i : notes) {
+        display.add(new PianoNote());
+        for(MusicNote i : display) {
             group.getChildren().add(i.toShape());
         }
+    }
+
+    public void playList() throws IOException {
+        Play.playList(playNotes);
     }
 }
