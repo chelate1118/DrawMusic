@@ -2,6 +2,7 @@ package com.draw.drawmusic.properties;
 
 import com.draw.drawmusic.tools.Calculator;
 import com.draw.drawmusic.tools.CalculatorException;
+import com.draw.drawmusic.tools.ResourcePaths;
 import javafx.scene.paint.Color;
 import org.json.JSONObject;
 

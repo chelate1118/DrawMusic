@@ -1,4 +1,4 @@
-package com.draw.drawmusic.properties;
+package com.draw.drawmusic.tools;
 
 import com.draw.drawmusic.MainApplicationManager;
 

@@ -6,7 +6,7 @@ public class WhiteKey extends ShapeNote{
     public static final double TIME_ON = 0.0, DURATION = 100.0;
 
     @Override
-    public Rectangle toShape() {
+    public Rectangle toShape(boolean isSelected) {
         return null;
     }
 }

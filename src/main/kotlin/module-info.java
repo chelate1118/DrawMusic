@@ -16,4 +16,5 @@ module com.draw.drawmusic {
     exports com.draw.drawmusic.track;
     exports com.draw.drawmusic.properties;
     exports com.draw.drawmusic.tools;
+    exports com.draw.drawmusic.times;
 }

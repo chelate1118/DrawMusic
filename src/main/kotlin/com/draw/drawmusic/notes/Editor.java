@@ -1,5 +1,6 @@
 package com.draw.drawmusic.notes;
 
+import com.draw.drawmusic.times.Bars;
 import com.draw.drawmusic.track.TrackElement;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -15,7 +16,7 @@ public class Editor {
         stackPane = _stackPane;
     }
 
-    private TrackElement element;
+    private final TrackElement element;
     public Editor(TrackElement trackElement) {
         element = trackElement;
         stackPane.getChildren().add(group);
@@ -24,12 +25,14 @@ public class Editor {
 
     private final Group group = new Group();
     private final ArrayList<MusicNote> display = new ArrayList<>();
-    private final ArrayList<PlayNote> playNotes = new ArrayList<>();
+    private final ArrayList<PlayNote>  playNotes = new ArrayList<>();
+    private final ArrayList<Bars>      bars = new ArrayList<>();
 
     public void show() {
         display.add(new PianoNote());
+        display.get(0).setPalette(element.getPalette());
         for(MusicNote i : display) {
-            group.getChildren().add(i.toShape());
+            group.getChildren().add(i.toShape(true));
         }
     }
 

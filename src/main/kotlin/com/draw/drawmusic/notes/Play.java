@@ -1,7 +1,7 @@
 package com.draw.drawmusic.notes;
 
 import com.draw.drawmusic.tools.InteractBin;
-import com.draw.drawmusic.tools.Ticks;
+import com.draw.drawmusic.times.Ticks;
 
 import java.io.IOException;
 import java.util.ArrayList;

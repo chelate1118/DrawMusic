@@ -40,7 +40,7 @@ class Tertiary {
 }
 
 public class Spline {
-    private final ArrayList<Tertiary>    fun = new ArrayList<>();
+    private final ArrayList<Tertiary>    fun    = new ArrayList<>();
     private final ArrayList<SplineJoint> points = new ArrayList<>();
 
     public void addPoint(SplineJoint point) {
