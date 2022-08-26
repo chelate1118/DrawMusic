@@ -14,6 +14,7 @@ public class Editor {
 
     public static void init(StackPane _stackPane) {
         stackPane = _stackPane;
+        System.out.println("[Editor : init()] Editor initialized");
     }
 
     private final TrackElement element;
@@ -29,10 +30,10 @@ public class Editor {
     private final ArrayList<Bars>      bars = new ArrayList<>();
 
     public void show() {
-        display.add(new PianoNote());
+        display.add(new PianoNote(this));
         display.get(0).setPalette(element.getPalette());
         for(MusicNote i : display) {
-            group.getChildren().add(i.toShape(true));
+            group.getChildren().add(i.toShape(NoteSelect.NoteSelected));
         }
     }
 

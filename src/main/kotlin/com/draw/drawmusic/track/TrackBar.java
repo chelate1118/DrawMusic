@@ -27,6 +27,8 @@ public class TrackBar { // This class does not require any instances. Every fiel
         scrollPane = _trackBarScrollPane;
 
         fitSize();
+
+        System.out.println("[TrackBar : init()] TrackBar initialized");
     }
 
     public static void addSelected(TrackElement element, boolean ctrlClicked) {
@@ -43,14 +45,14 @@ public class TrackBar { // This class does not require any instances. Every fiel
         TrackElement newElement = new TrackElement(Palette.next(), Instrument.Grandpiano);
         elements.add(newElement);
 
-        showElements();
+        drawElements();
         addSelected(newElement, false);
         fadeInElement(contentBar.getChildren().get(elements.size() - 1));
 
         System.out.println("[TrackBar : addElement()] New track added : " + newElement);
     }
 
-    public static void showElements() {
+    public static void drawElements() {
         contentBar.getChildren().clear();
         for (TrackElement element: elements) {
             contentBar.getChildren().add(element.getGridPane());

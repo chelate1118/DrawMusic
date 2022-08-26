@@ -6,10 +6,11 @@ import javafx.scene.shape.Rectangle;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class MusicNote implements Comparable<MusicNote> {
-    public int pitch;
-    public double velocity;
-    public Ticks timeOn, timeOff;
+    protected int pitch;
+    protected double velocity;
+    protected Ticks timeOn, timeOff;
     protected Palette palette;
+    protected static final double NOTE_HEIGHT = 20.0;
 
     public void setPalette(Palette palette) {
         this.palette = palette;
@@ -19,10 +20,13 @@ public abstract class MusicNote implements Comparable<MusicNote> {
         return palette;
     }
 
-    public abstract Rectangle toShape(boolean isSelected);
+    public abstract Rectangle toShape(NoteSelect isSelected);
 
     public static double pitchToY(int pitch) {
-        return pitch;
+        int i = (108 - pitch) / 12;
+        int j = (108 - pitch) % 12;
+
+        return (i * 7 + new double[]{0, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5, 5.5, 6, 6.5}[j]) * NOTE_HEIGHT;
     }
 
     public static int YToPitch(double Y) {

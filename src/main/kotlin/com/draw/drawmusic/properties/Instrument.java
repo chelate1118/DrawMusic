@@ -1,5 +1,6 @@
 package com.draw.drawmusic.properties;
 
+import com.draw.drawmusic.notes.Editor;
 import com.draw.drawmusic.notes.PianoNote;
 import com.draw.drawmusic.notes.PlayNote;
 import com.draw.drawmusic.notes.ViolinNote;
@@ -24,12 +25,12 @@ public class Instrument {
 
     }
 
-    public PlayNote makeNote() {
+    public PlayNote makeNote(Editor parent) {
         switch(index) {
             case 1:
-                return new PianoNote();
+                return new PianoNote(parent);
             default:
-                return new ViolinNote();
+                return new ViolinNote(parent);
         }
     }
 
