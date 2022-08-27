@@ -4,8 +4,6 @@ import com.draw.drawmusic.notes.Editor;
 import com.draw.drawmusic.notes.PianoNote;
 import com.draw.drawmusic.notes.PlayNote;
 import com.draw.drawmusic.notes.ViolinNote;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,10 +24,6 @@ public class Instrument {
     public String getName() { return instrumentName.get(index); }
     public static ArrayList<Instrument> getInstrumentList() { return instrumentList; }
 
-    public void addInstrument() {
-
-    }
-
     public PlayNote makeNote(Editor parent) {
         switch(index) {
             case 1:
@@ -37,16 +31,6 @@ public class Instrument {
             default:
                 return new ViolinNote(parent);
         }
-    }
-
-    public static MenuButton makeInstrumentPicker() {
-        MenuButton val = new MenuButton();
-
-        for(int i = 0; i < count; i++) {
-            val.getItems().add(new MenuItem(instrumentName.get(i)));
-        }
-
-        return val;
     }
 
     public static Instrument fromName(String name) throws Exception {
