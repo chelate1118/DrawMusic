@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class TrackBar {
     private static VBox contentBar;
     private static ScrollPane scrollPane;
-    private static final ArrayList<TrackBarElement> trackElements = new ArrayList<>();
-    public static ArrayList<TrackBarElement> getTrackElements() { return trackElements; }
+    private static final ArrayList<Track> trackElements = new ArrayList<>();
+    public static ArrayList<Track> getTrackElements() { return trackElements; }
 
     private static void fitSize() {
         scrollPane.setFitToWidth(true);
@@ -32,7 +32,7 @@ public class TrackBar {
         System.out.println("[TrackBar : init()] TrackBar initialized");
     }
 
-    public static void addSelected(TrackBarElement element, boolean ctrlClicked, boolean shiftClicked) {
+    public static void addSelected(Track element, boolean ctrlClicked, boolean shiftClicked) {
         if (shiftClicked) {
             int index = trackElements.indexOf(element), siz = trackElements.size();
             int start = -1;
@@ -44,7 +44,7 @@ public class TrackBar {
             if(start == -1) {
                 element.trackSelect = TrackSelect.currentSelected;
             } else {
-                for(TrackBarElement _element : trackElements)
+                for(Track _element : trackElements)
                     _element.trackSelect = TrackSelect.unSelected;
                 for(int i = Integer.min(index, start); i <= Integer.max(index, start); i++) {
                     if(i == start) trackElements.get(i).trackSelect = TrackSelect.currentSelected;
@@ -55,14 +55,14 @@ public class TrackBar {
             if(element.trackSelect != TrackSelect.unSelected) {
                 element.trackSelect = TrackSelect.unSelected;
             } else {
-                for (TrackBarElement _element : trackElements) {
+                for (Track _element : trackElements) {
                     if (_element.trackSelect == TrackSelect.currentSelected)
                         _element.trackSelect = TrackSelect.multiSelected;
                 }
                 element.trackSelect = TrackSelect.currentSelected;
             }
         } else {
-            for (TrackBarElement _element : trackElements) {
+            for (Track _element : trackElements) {
                 _element.trackSelect = TrackSelect.unSelected;
             }
             element.trackSelect = TrackSelect.currentSelected;
@@ -83,13 +83,13 @@ public class TrackBar {
 
     public static void drawElements() {
         contentBar.getChildren().clear();
-        for (TrackBarElement element: trackElements) {
+        for (Track element: trackElements) {
             contentBar.getChildren().add(element.trackElement.getGridPane());
         }
     }
 
     public static void updateElements() {
-        for (TrackBarElement element: trackElements) {
+        for (Track element: trackElements) {
             element.trackElement.updateShape();
         }
     }

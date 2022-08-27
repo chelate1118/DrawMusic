@@ -1,13 +1,13 @@
 package com.draw.drawmusic.notes;
 
-import com.draw.drawmusic.track.TrackBarElement;
+import com.draw.drawmusic.track.Track;
 
 import java.io.IOException;
 
 public abstract class PlayNote extends MusicNote{
     public int ID;
-    private TrackBarElement parent;
-    public PlayNote(TrackBarElement _parent) {
+    private Track parent;
+    public PlayNote(Track _parent) {
         super();
         parent = _parent;
     }

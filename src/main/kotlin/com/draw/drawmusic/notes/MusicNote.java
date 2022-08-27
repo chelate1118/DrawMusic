@@ -5,6 +5,8 @@ import com.draw.drawmusic.times.Ticks;
 import javafx.scene.shape.Rectangle;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Random;
+
 public abstract class MusicNote implements Comparable<MusicNote> {
     protected int pitch;
     protected double velocity;
@@ -20,7 +22,13 @@ public abstract class MusicNote implements Comparable<MusicNote> {
         return palette;
     }
 
-    public abstract Rectangle toShape(NoteSelect isSelected);
+    public Rectangle toShape(NoteSelect isSelected) {
+        Rectangle ret = new Rectangle(0, new Random().nextDouble(500), 100, NOTE_HEIGHT);
+        System.out.println(ret.getY());
+        ret.setFill(palette.color());
+
+        return ret;
+    }
 
     public static double pitchToY(int pitch) {
         int i = (108 - pitch) / 12;

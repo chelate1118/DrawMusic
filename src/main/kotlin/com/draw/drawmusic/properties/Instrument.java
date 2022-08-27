@@ -1,10 +1,9 @@
 package com.draw.drawmusic.properties;
 
-import com.draw.drawmusic.notes.Editor;
 import com.draw.drawmusic.notes.PianoNote;
 import com.draw.drawmusic.notes.PlayNote;
 import com.draw.drawmusic.notes.ViolinNote;
-import com.draw.drawmusic.track.TrackBarElement;
+import com.draw.drawmusic.track.Track;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +24,7 @@ public class Instrument {
     public String getName() { return instrumentName.get(index); }
     public static ArrayList<Instrument> getInstrumentList() { return instrumentList; }
 
-    public PlayNote makeNote(TrackBarElement parent) {
+    public PlayNote makeNote(Track parent) {
         switch(index) {
             case 1:
                 return new PianoNote(parent);
