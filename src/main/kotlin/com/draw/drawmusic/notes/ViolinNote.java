@@ -1,9 +1,10 @@
 package com.draw.drawmusic.notes;
 
+import com.draw.drawmusic.track.TrackBarElement;
 import javafx.scene.shape.Rectangle;
 
 public class ViolinNote extends PlayNote {
-    public ViolinNote(Editor _parent) {
+    public ViolinNote(TrackBarElement _parent) {
         super(_parent);
     }
 

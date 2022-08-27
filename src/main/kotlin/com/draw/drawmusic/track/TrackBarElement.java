@@ -4,12 +4,12 @@ import com.draw.drawmusic.notes.Editor;
 
 public class TrackBarElement {
     public TrackBarElementController trackElement;
-    public Editor editor;
     public TrackSelect trackSelect;
+    public Editor editor;
 
-    public TrackBarElement(TrackBarElementController _element, Editor _editor, TrackSelect _trackSelect) {
+    public TrackBarElement(TrackBarElementController _element, TrackSelect _trackSelect) {
         trackElement = _element;
-        editor = _editor;
         trackSelect = _trackSelect;
+        editor = new Editor(this);
     }
 }

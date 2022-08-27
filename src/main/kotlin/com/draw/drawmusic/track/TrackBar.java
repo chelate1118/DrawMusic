@@ -32,8 +32,26 @@ public class TrackBar {
         System.out.println("[TrackBar : init()] TrackBar initialized");
     }
 
-    public static void addSelected(TrackBarElement element, boolean ctrlClicked) {
-        if (ctrlClicked) {
+    public static void addSelected(TrackBarElement element, boolean ctrlClicked, boolean shiftClicked) {
+        if (shiftClicked) {
+            int index = trackElements.indexOf(element), siz = trackElements.size();
+            int start = -1;
+            for(int i = 0; i < siz; i++) {
+                if(trackElements.get(i).trackSelect == TrackSelect.currentSelected) {
+                    start = i;
+                }
+            }
+            if(start == -1) {
+                element.trackSelect = TrackSelect.currentSelected;
+            } else {
+                for(TrackBarElement _element : trackElements)
+                    _element.trackSelect = TrackSelect.unSelected;
+                for(int i = Integer.min(index, start); i <= Integer.max(index, start); i++) {
+                    if(i == start) trackElements.get(i).trackSelect = TrackSelect.currentSelected;
+                    else trackElements.get(i).trackSelect = TrackSelect.multiSelected;
+                }
+            }
+        } else if (ctrlClicked) {
             if(element.trackSelect != TrackSelect.unSelected) {
                 element.trackSelect = TrackSelect.unSelected;
             } else {
@@ -49,7 +67,7 @@ public class TrackBar {
             }
             element.trackSelect = TrackSelect.currentSelected;
         }
-        drawElements();
+        updateElements();
     }
 
     public static void addElement() {
@@ -57,7 +75,7 @@ public class TrackBar {
 
         drawElements();
         scrollPane.setVvalue(0.0);
-        addSelected(trackElements.get(0), false);
+        addSelected(trackElements.get(0), false, false);
         fadeInElement(contentBar.getChildren().get(0));
 
         System.out.println("[TrackBar : addElement()] New track added : " + trackElements.get(trackElements.size()-1));
@@ -67,6 +85,12 @@ public class TrackBar {
         contentBar.getChildren().clear();
         for (TrackBarElement element: trackElements) {
             contentBar.getChildren().add(element.trackElement.getGridPane());
+        }
+    }
+
+    public static void updateElements() {
+        for (TrackBarElement element: trackElements) {
+            element.trackElement.updateShape();
         }
     }
 

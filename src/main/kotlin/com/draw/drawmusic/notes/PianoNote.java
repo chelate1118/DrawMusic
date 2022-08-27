@@ -1,12 +1,13 @@
 package com.draw.drawmusic.notes;
 
+import com.draw.drawmusic.track.TrackBarElement;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Random;
 
 public class PianoNote extends PlayNote {
-    public PianoNote(Editor _parent) {
+    public PianoNote(TrackBarElement _parent) {
         super(_parent);
     }
 

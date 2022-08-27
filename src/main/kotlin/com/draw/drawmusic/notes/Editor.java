@@ -1,7 +1,7 @@
 package com.draw.drawmusic.notes;
 
 import com.draw.drawmusic.times.Bars;
-import com.draw.drawmusic.track.TrackBarElementController;
+import com.draw.drawmusic.track.TrackBarElement;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.layout.StackPane;
@@ -17,9 +17,9 @@ public class Editor {
         System.out.println("[Editor : init()] Editor initialized");
     }
 
-    private final TrackBarElementController element;
-    public Editor(TrackBarElementController trackElement) {
-        element = trackElement;
+    private final TrackBarElement trackBarElement;
+    public Editor(TrackBarElement trackBarElement) {
+        this.trackBarElement = trackBarElement;
         stackPane.getChildren().add(group);
         StackPane.setAlignment(group, Pos.TOP_LEFT);
     }
@@ -30,8 +30,8 @@ public class Editor {
     private final ArrayList<Bars>      bars = new ArrayList<>();
 
     public void show() {
-        display.add(new PianoNote(this));
-        display.get(0).setPalette(element.getPalette());
+        display.add(new PianoNote(trackBarElement));
+        display.get(0).setPalette(trackBarElement.trackElement.getPalette());
         for(MusicNote i : display) {
             group.getChildren().add(i.toShape(NoteSelect.NoteSelected));
         }

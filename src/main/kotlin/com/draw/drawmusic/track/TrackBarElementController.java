@@ -1,6 +1,5 @@
 package com.draw.drawmusic.track;
 
-import com.draw.drawmusic.notes.Editor;
 import com.draw.drawmusic.properties.Instrument;
 import com.draw.drawmusic.properties.Palette;
 import com.draw.drawmusic.tools.CalculatorException;
@@ -28,7 +27,6 @@ public class TrackBarElementController implements Initializable {
     @FXML public GridPane   gridPane;
 
     public GridPane getGridPane() {
-        makeShape();
         return gridPane;
     }
 
@@ -46,7 +44,7 @@ public class TrackBarElementController implements Initializable {
     private void init() {
         palette = Palette.next();
         instrument = Instrument.GRANDPIANO;
-        trackBarElement = new TrackBarElement(this, new Editor(this), TrackSelect.unSelected);
+        trackBarElement = new TrackBarElement(this, TrackSelect.unSelected);
         TrackBar.getTrackElements().add(0, trackBarElement);
     }
 
@@ -56,6 +54,14 @@ public class TrackBarElementController implements Initializable {
             makeChooseInstrument();
             makeInputTrackName();
             makeGridPane();
+        } catch (CalculatorException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateShape() {
+        try {
+            updateGridPane();
         } catch (CalculatorException e) {
             throw new RuntimeException(e);
         }
@@ -99,16 +105,7 @@ public class TrackBarElementController implements Initializable {
         gridPane.setBackground(new Background(new BackgroundFill(palette.brightColor(BRIGHTER, ALPHA),
                 new CornerRadii(13.0), Insets.EMPTY)));
 
-        Paint borderColor;
-        if (trackBarElement.trackSelect == TrackSelect.unSelected) {
-            borderColor = palette.darkColor(DARKER);
-        } else if (trackBarElement.trackSelect == TrackSelect.currentSelected) {
-            borderColor = palette.brightColor(BRIGHTER);
-        } else { // trackBarElement.trackSelect == TrackSelect.multiSelected
-            borderColor = palette.brightColor(BRIGHTER);
-        }
-
-        gridPane.setBorder(new Border(new BorderStroke(borderColor, BorderStrokeStyle.SOLID,
+        gridPane.setBorder(new Border(new BorderStroke(palette.darkColor(DARKER), BorderStrokeStyle.SOLID,
                 new CornerRadii(10.0), new BorderWidths(3.0))));
 
         VBox.setMargin(gridPane, new Insets(5, 5, 5, 5));
@@ -117,7 +114,7 @@ public class TrackBarElementController implements Initializable {
     private void makeEventControl() {
         gridPane.addEventFilter(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             if(mouseEvent.getButton() == MouseButton.PRIMARY)
-                TrackBar.addSelected(trackBarElement, mouseEvent.isControlDown());
+                TrackBar.addSelected(trackBarElement, mouseEvent.isControlDown(), mouseEvent.isShiftDown());
         });
     }
 
@@ -130,6 +127,23 @@ public class TrackBarElementController implements Initializable {
             inputTrackName.setText(_instrument.getName());
         });
         return menuItem;
+    }
+
+    private void updateGridPane() throws CalculatorException {
+        final double BRIGHTER = 3.0;
+        final double DARKER = 0.7;
+
+        Paint borderColor;
+        if (trackBarElement.trackSelect == TrackSelect.unSelected) {
+            borderColor = palette.darkColor(DARKER);
+        } else if (trackBarElement.trackSelect == TrackSelect.currentSelected) {
+            borderColor = palette.brightColor(BRIGHTER);
+        } else { // trackBarElement.trackSelect == TrackSelect.multiSelected
+            borderColor = palette.brightColor(BRIGHTER);
+        }
+
+        gridPane.setBorder(new Border(new BorderStroke(borderColor, BorderStrokeStyle.SOLID,
+                new CornerRadii(10.0), new BorderWidths(3.0))));
     }
 
     public Palette getPalette() { return palette; }
