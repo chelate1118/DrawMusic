@@ -34,23 +34,30 @@ public class TrackBar {
 
     public static void addSelected(TrackBarElement element, boolean ctrlClicked) {
         if (ctrlClicked) {
-            for (TrackBarElement _element : trackElements) {
-                if(_element.trackSelect == TrackSelect.currentSelected)
-                    _element.trackSelect = TrackSelect.multiSelected;
+            if(element.trackSelect != TrackSelect.unSelected) {
+                element.trackSelect = TrackSelect.unSelected;
+            } else {
+                for (TrackBarElement _element : trackElements) {
+                    if (_element.trackSelect == TrackSelect.currentSelected)
+                        _element.trackSelect = TrackSelect.multiSelected;
+                }
+                element.trackSelect = TrackSelect.currentSelected;
             }
         } else {
             for (TrackBarElement _element : trackElements) {
                 _element.trackSelect = TrackSelect.unSelected;
             }
+            element.trackSelect = TrackSelect.currentSelected;
         }
-        element.trackSelect = TrackSelect.currentSelected;
+        drawElements();
     }
 
     public static void addElement() {
         FXMLController.Companion.fxmlLoad("track-element.fxml");
 
         drawElements();
-        fadeInElement(contentBar.getChildren().get(trackElements.size() - 1));
+        addSelected(trackElements.get(0), false);
+        fadeInElement(contentBar.getChildren().get(0));
 
         System.out.println("[TrackBar : addElement()] New track added : " + trackElements.get(trackElements.size()-1));
     }

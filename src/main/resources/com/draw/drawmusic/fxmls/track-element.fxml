@@ -12,8 +12,8 @@
     <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="120.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="42.0" vgrow="ALWAYS" />
-    <RowConstraints minHeight="10.0" prefHeight="42.0" vgrow="ALWAYS" />
+    <RowConstraints prefHeight="42.0" vgrow="ALWAYS" />
+    <RowConstraints prefHeight="42.0" vgrow="ALWAYS" />
   </rowConstraints>
    <children>
       <Circle fx:id="colorCircle" radius="12.0" strokeWidth="3.0" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="2">

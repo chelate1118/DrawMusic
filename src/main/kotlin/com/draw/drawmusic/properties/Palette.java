@@ -37,7 +37,7 @@ public record Palette(Color color) {
     /**
      * CalculatorException while calculate sigmoid
      */
-    public Color getDarkColor(double change, double alpha) throws CalculatorException {
+    public Color darkColor(double change, double alpha) throws CalculatorException {
         return Color.hsb(color.getHue(), color.getSaturation(),
                 Calculator.changeWithSigmoid(color.getBrightness(), -change), alpha);
     }
@@ -45,7 +45,7 @@ public record Palette(Color color) {
     /**
      * CalculatorException while calculate sigmoid
      */
-    public Color getDarkColor(double change) throws CalculatorException {
+    public Color darkColor(double change) throws CalculatorException {
         return Color.hsb(color.getHue(), color.getSaturation(),
                 Calculator.changeWithSigmoid(color.getBrightness(), -change));
     }
@@ -53,14 +53,14 @@ public record Palette(Color color) {
     /**
      * CalculatorException while calculate sigmoid
      */
-    public Color getBrightColor(double change, double alpha) throws CalculatorException {
-        return getDarkColor(-change, alpha);
+    public Color brightColor(double change, double alpha) throws CalculatorException {
+        return darkColor(-change, alpha);
     }
 
     /**
      * CalculatorException while calculate sigmoid
      */
-    public Color getBrightColor(double change) throws CalculatorException {
-        return getDarkColor(-change);
+    public Color brightColor(double change) throws CalculatorException {
+        return darkColor(-change);
     }
 }
