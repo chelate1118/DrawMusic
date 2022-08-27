@@ -17,6 +17,7 @@ class MainViewController : Initializable {
     lateinit var stackPane : StackPane
 
     fun plusButtonClicked() {
+        trackBarScrollPane.vvalue = 0.0
         TrackBar.addElement()
     }
 
