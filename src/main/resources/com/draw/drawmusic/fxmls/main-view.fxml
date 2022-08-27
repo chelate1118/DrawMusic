@@ -52,7 +52,7 @@
                   <Button mnemonicParsing="false" onAction="#plusButtonClicked" prefHeight="17.5" prefWidth="17.5" styleClass="buttonInToolBar">
                      <graphic>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                            <Image requestedHeight="40.0" requestedWidth="40.0" url="@images/plus.png" />
+                            <Image requestedHeight="40.0" requestedWidth="40.0" url="@../images/plus.png" />
                         </ImageView>
                      </graphic>
                   </Button>

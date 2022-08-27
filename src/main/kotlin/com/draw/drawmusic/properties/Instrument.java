@@ -12,14 +12,19 @@ import java.util.Arrays;
 
 public class Instrument {
     private final int index;
-    private static int count = 3; // number of instruments
     private Instrument(int _num) { index = _num; }
-    public static Instrument Grandpiano = new Instrument(0);
+    private static final int count = 3; // number of instruments
+    public static Instrument GRANDPIANO = new Instrument(0);
+    public static Instrument VIOLIN = new Instrument(1);
+    public static Instrument FLUTE = new Instrument(2);
 
+    private static final ArrayList<Instrument> instrumentList = new ArrayList<>(
+            Arrays.asList(GRANDPIANO, VIOLIN, FLUTE));
     private static final ArrayList<String> instrumentName = new ArrayList<>(
-            Arrays.asList("Grand Piano", "Violin", "Flute")); // Please change 'count' when you change this array list
+            Arrays.asList("Grand Piano", "Violin", "Flute"));
 
     public String getName() { return instrumentName.get(index); }
+    public static ArrayList<Instrument> getInstrumentList() { return instrumentList; }
 
     public void addInstrument() {
 
@@ -46,7 +51,7 @@ public class Instrument {
 
     public static Instrument fromName(String name) throws Exception {
         for(int i = 0; i < count; i++) {
-            if(instrumentName.get(i).equals(name)) return new Instrument(i);
+            if(instrumentName.get(i).equals(name)) return instrumentList.get(i);
         }
         throw new Exception();
     }

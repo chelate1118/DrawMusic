@@ -34,12 +34,33 @@ public record Palette(Color color) {
         return new Palette(Color.web(jsonObject.getString(generateNext.next())));
     }
 
+    /**
+     * CalculatorException while calculate sigmoid
+     */
     public Color getDarkColor(double change, double alpha) throws CalculatorException {
         return Color.hsb(color.getHue(), color.getSaturation(),
                 Calculator.changeWithSigmoid(color.getBrightness(), -change), alpha);
     }
 
+    /**
+     * CalculatorException while calculate sigmoid
+     */
+    public Color getDarkColor(double change) throws CalculatorException {
+        return Color.hsb(color.getHue(), color.getSaturation(),
+                Calculator.changeWithSigmoid(color.getBrightness(), -change));
+    }
+
+    /**
+     * CalculatorException while calculate sigmoid
+     */
     public Color getBrightColor(double change, double alpha) throws CalculatorException {
         return getDarkColor(-change, alpha);
+    }
+
+    /**
+     * CalculatorException while calculate sigmoid
+     */
+    public Color getBrightColor(double change) throws CalculatorException {
+        return getDarkColor(-change);
     }
 }

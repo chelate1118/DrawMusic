@@ -1,8 +1,6 @@
 package com.draw.drawmusic.track;
 
-import com.draw.drawmusic.properties.Instrument;
-import com.draw.drawmusic.properties.Palette;
-import com.draw.drawmusic.tools.CalculatorException;
+import com.draw.drawmusic.controllers.FXMLController;
 import javafx.animation.FadeTransition;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
@@ -11,11 +9,14 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 
-public class TrackBar { // This class does not require any instances. Every field and method is static.
+/**
+ * Every field and method are static
+ */
+public class TrackBar {
     private static VBox contentBar;
     private static ScrollPane scrollPane;
-    private static final ArrayList<TrackElement> elements = new ArrayList<>();
-    private static final ArrayList<Integer> selected = new ArrayList<>();
+    private static final ArrayList<TrackBarElement> trackElements = new ArrayList<>();
+    public static ArrayList<TrackBarElement> getTrackElements() { return trackElements; }
 
     private static void fitSize() {
         scrollPane.setFitToWidth(true);
@@ -31,31 +32,33 @@ public class TrackBar { // This class does not require any instances. Every fiel
         System.out.println("[TrackBar : init()] TrackBar initialized");
     }
 
-    public static void addSelected(TrackElement element, boolean ctrlClicked) {
-        if(!ctrlClicked) {
-            selected.clear();
-            selected.trimToSize();
+    public static void addSelected(TrackBarElement element, boolean ctrlClicked) {
+        if (ctrlClicked) {
+            for (TrackBarElement _element : trackElements) {
+                if(_element.trackSelect == TrackSelect.currentSelected)
+                    _element.trackSelect = TrackSelect.multiSelected;
+            }
+        } else {
+            for (TrackBarElement _element : trackElements) {
+                _element.trackSelect = TrackSelect.unSelected;
+            }
         }
-
-        selected.add(elements.indexOf(element));
-        System.out.println("[TrackBar : addSelected()] Track has selected : " + selected);
+        element.trackSelect = TrackSelect.currentSelected;
     }
 
-    public static void addElement() throws CalculatorException {
-        TrackElement newElement = new TrackElement(Palette.next(), Instrument.Grandpiano);
-        elements.add(newElement);
+    public static void addElement() {
+        FXMLController.Companion.fxmlLoad("track-element.fxml");
 
         drawElements();
-        addSelected(newElement, false);
-        fadeInElement(contentBar.getChildren().get(elements.size() - 1));
+        fadeInElement(contentBar.getChildren().get(trackElements.size() - 1));
 
-        System.out.println("[TrackBar : addElement()] New track added : " + newElement);
+        System.out.println("[TrackBar : addElement()] New track added : " + trackElements.get(trackElements.size()-1));
     }
 
     public static void drawElements() {
         contentBar.getChildren().clear();
-        for (TrackElement element: elements) {
-            contentBar.getChildren().add(element.getGridPane());
+        for (TrackBarElement element: trackElements) {
+            contentBar.getChildren().add(element.trackElement.getGridPane());
         }
     }
 

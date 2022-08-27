@@ -1,7 +1,7 @@
 package com.draw.drawmusic.notes;
 
 import com.draw.drawmusic.times.Bars;
-import com.draw.drawmusic.track.TrackElement;
+import com.draw.drawmusic.track.TrackBarElementController;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.layout.StackPane;
@@ -17,8 +17,8 @@ public class Editor {
         System.out.println("[Editor : init()] Editor initialized");
     }
 
-    private final TrackElement element;
-    public Editor(TrackElement trackElement) {
+    private final TrackBarElementController element;
+    public Editor(TrackBarElementController trackElement) {
         element = trackElement;
         stackPane.getChildren().add(group);
         StackPane.setAlignment(group, Pos.TOP_LEFT);

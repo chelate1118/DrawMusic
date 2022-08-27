@@ -24,7 +24,7 @@ class MainApplicationManager : Application() {
         }
 
         private fun setScene(fxmlFilePath : String) {
-            val fxmlLoader = FXMLLoader(MainApplicationManager::class.java.getResource(fxmlFilePath))
+            val fxmlLoader = FXMLLoader(MainApplicationManager::class.java.getResource("fxmls/".plus(fxmlFilePath)))
             scene = Scene(fxmlLoader.load(), DEFAULT_WIDTH, DEFAULT_HEIGHT)
         }
 
@@ -36,7 +36,7 @@ class MainApplicationManager : Application() {
             stage.title = title
             stage.scene = scene
             stage.icons.add(Image(MainApplicationManager::class.java.getResource("images/".plus(iconPath))?.toString()))
-            stage.isMaximized = isMaximized == WindowSize.IS_MAXIMIZED
+            stage.isMaximized = (isMaximized == WindowSize.IS_MAXIMIZED)
             stage.minWidth = MIN_WIDTH
             stage.minHeight = MIN_HEIGHT
         }
@@ -48,6 +48,8 @@ class MainApplicationManager : Application() {
             setStage(title, iconPath, isMaximized)
 
             stage.show()
+
+            println("[MainApplicationManager : changeStage()] Load fxml file as new stage : ".plus(fxmlFilePath))
         }
 
     }

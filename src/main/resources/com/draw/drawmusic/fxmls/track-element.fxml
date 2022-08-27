@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.draw.drawmusic.track.TrackBarElementController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="64.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="120.0" />
+    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="120.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="42.0" vgrow="ALWAYS" />
+    <RowConstraints minHeight="10.0" prefHeight="42.0" vgrow="ALWAYS" />
+  </rowConstraints>
+   <children>
+      <Circle fx:id="colorCircle" radius="12.0" strokeWidth="3.0" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="2">
+         <GridPane.margin>
+            <Insets bottom="30.0" left="30.0" right="20.0" top="30.0" />
+         </GridPane.margin>
+      </Circle>
+      <MenuButton fx:id="chooseInstrument" mnemonicParsing="false" prefWidth="120.0" text="MenuButton" GridPane.columnIndex="1" GridPane.rowIndex="1">
+          <GridPane.margin>
+              <Insets bottom="8.0" top="8.0" />
+          </GridPane.margin>
+      </MenuButton>
+      <TextField fx:id="inputTrackName" minWidth="120.0" maxWidth="120.0" style="-fx-text-fill: white" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+   </children>
+</GridPane>
