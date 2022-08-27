@@ -56,6 +56,7 @@ public class TrackBar {
         FXMLController.Companion.fxmlLoad("track-element.fxml");
 
         drawElements();
+        scrollPane.setVvalue(0.0);
         addSelected(trackElements.get(0), false);
         fadeInElement(contentBar.getChildren().get(0));
 
