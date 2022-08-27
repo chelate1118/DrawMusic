@@ -42,7 +42,7 @@
          <center>
             <ScrollPane fx:id="trackBarScrollPane" prefWidth="400.0">
                <content>
-                  <VBox fx:id="trackBarContent" style="-fx-padding: 5 0 5 0;" styleClass="track-bar" />
+                  <VBox fx:id="trackBarContent" style="-fx-padding: 5 0 110 0;" styleClass="track-bar" />
                </content>
             </ScrollPane>
          </center>

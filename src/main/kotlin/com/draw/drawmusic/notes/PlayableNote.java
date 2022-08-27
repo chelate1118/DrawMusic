@@ -4,10 +4,12 @@ import com.draw.drawmusic.track.Track;
 
 import java.io.IOException;
 
-public abstract class PlayNote extends MusicNote{
+public abstract class PlayableNote extends MusicNote{
     public int ID;
-    private Track parent;
-    public PlayNote(Track _parent) {
+    protected Track parent;
+    protected NoteSelect noteSelect;
+
+    public PlayableNote(Track _parent) {
         super();
         parent = _parent;
     }

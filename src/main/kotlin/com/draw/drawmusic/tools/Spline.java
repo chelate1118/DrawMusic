@@ -1,43 +1,7 @@
 package com.draw.drawmusic.tools;
 
-import Jama.Matrix;
-
 import java.util.ArrayList;
 import java.util.Collections;
-
-class Tertiary {
-    public double start, end;
-    public double[] coefficients;
-
-    public Tertiary(SplineJoint s, SplineJoint e) {
-        double[][] arr = {
-                {Math.pow(s.x, 3), Math.pow(s.x, 2), s.x, 1},
-                {Math.pow(e.x, 3), Math.pow(e.x, 2), e.x, 1},
-                {3 * Math.pow(s.x, 2), 2 * s.x, 1, 0},
-                {3 * Math.pow(e.x, 2), 2 * e.x, 1, 0},
-        };
-        Matrix mat = new Matrix(arr);
-        Matrix con = new Matrix(new double[][]{
-                {s.y}, {e.y}, {s.dy}, {e.dy}
-        });
-        Matrix ans = mat.inverse().times(con);
-        coefficients = ans.getColumnPackedCopy();
-        start = s.x;
-        end = e.x;
-    }
-
-    public boolean inRange(double x) {
-        return start <= x && x <= end;
-    }
-    public double getVal(double x) {
-        double ans = 0;
-        for(double coe : coefficients) {
-            ans *= x;
-            ans += coe;
-        }
-        return ans;
-    }
-}
 
 public class Spline {
     private final ArrayList<Tertiary>    fun    = new ArrayList<>();

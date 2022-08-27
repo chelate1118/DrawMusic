@@ -40,7 +40,7 @@ public class TrackBarElementController implements Initializable {
 
     private void init() {
         parent = new Track(this, TrackSelect.unSelected, Palette.next());
-        TrackBar.getTrackElements().add(0, parent);
+        TrackBar.getTrackElements().add(parent);
     }
 
     private void makeShape() {
@@ -84,7 +84,7 @@ public class TrackBarElementController implements Initializable {
         final double DARKER = 1.0;
         final double ALPHA = 0.2;
 
-        inputTrackName.setText(parent.instrument.getName());
+        inputTrackName.setText("Track " + parent.ID);
 
         inputTrackName.setBackground(new Background(new BackgroundFill(Color.hsb(0, 0, 0, ALPHA),
                 CornerRadii.EMPTY, Insets.EMPTY)));

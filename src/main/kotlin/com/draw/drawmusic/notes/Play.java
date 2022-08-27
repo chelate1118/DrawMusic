@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Play {
-    public static void playOne(PlayNote note) throws IOException {
+    public static void playOne(PlayableNote note) throws IOException {
         InteractBin.sendCommand("s p\n" + note.ID + "\n");
     }
 
-    public static void playList(ArrayList<PlayNote> notes) throws IOException {
+    public static void playList(ArrayList<PlayableNote> notes) throws IOException {
         Collections.sort(notes);
 
         new Thread(() -> {

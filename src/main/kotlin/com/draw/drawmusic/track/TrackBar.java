@@ -72,13 +72,14 @@ public class TrackBar {
 
     public static void addElement() {
         FXMLController.Companion.fxmlLoad("track-element.fxml");
+        int insertIndex = trackElements.size() - 1;
 
         drawElements();
-        scrollPane.setVvalue(0.0);
-        addSelected(trackElements.get(0), false, false);
-        fadeInElement(contentBar.getChildren().get(0));
+        addSelected(trackElements.get(insertIndex), false, false);
+        fadeInElement(contentBar.getChildren().get(insertIndex));
+        scrollDown();
 
-        System.out.println("[TrackBar : addElement()] New track added : " + trackElements.get(trackElements.size()-1));
+        System.out.println("[TrackBar : addElement()] New track added : " + trackElements.get(insertIndex));
     }
 
     public static void drawElements() {
@@ -88,16 +89,20 @@ public class TrackBar {
         }
     }
 
-    public static void updateElements() {
+    private static void updateElements() {
         for (Track element: trackElements) {
             element.trackElement.updateShape();
         }
     }
 
-    public static void fadeInElement(Node node) {
+    private static void fadeInElement(Node node) {
         FadeTransition ft = new FadeTransition(Duration.millis(500), node);
         ft.setFromValue(0);
         ft.setToValue(1);
         ft.play();
+    }
+
+    private static void scrollDown() {
+        scrollPane.setVvalue(scrollPane.getVmax());
     }
 }

@@ -18,26 +18,34 @@ public class Editor {
     }
 
     private final Track parent;
+    private final Group group = new Group();
+
     public Editor(Track parent) {
         this.parent = parent;
         stackPane.getChildren().add(group);
         StackPane.setAlignment(group, Pos.TOP_LEFT);
     }
 
-    private final Group group = new Group();
     private final ArrayList<MusicNote> display = new ArrayList<>();
-    private final ArrayList<PlayNote>  playNotes = new ArrayList<>();
+    private final ArrayList<PlayableNote> playableNotes = new ArrayList<>();
     private final ArrayList<Bars>      bars = new ArrayList<>();
 
     public void show() {
         display.add(new PianoNote(parent));
-        display.get(0).setPalette(parent.palette);
         for(MusicNote i : display) {
             group.getChildren().add(i.toShape(NoteSelect.NoteSelected));
         }
     }
 
-    public void playList() throws IOException {
-        Play.playList(playNotes);
+    public void playList() {
+        try {
+            Play.playList(playableNotes);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateShape() {
+
     }
 }
