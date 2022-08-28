@@ -38,6 +38,11 @@ public class TrackBarElementController implements Initializable {
         makeEventControl();
     }
 
+    @FXML
+    public void trashButtonClicked() {
+        TrackBar.deleteElement(parent);
+    }
+
     private void init() {
         parent = new Track(this, TrackSelect.unSelected, Palette.next());
         TrackBar.getTrackElements().add(parent);
@@ -119,7 +124,6 @@ public class TrackBarElementController implements Initializable {
         menuItem.setOnAction(actionEvent -> {
             parent.instrument = _instrument;
             chooseInstrument.setText(_instrument.getName());
-            inputTrackName.setText(_instrument.getName());
         });
         return menuItem;
     }

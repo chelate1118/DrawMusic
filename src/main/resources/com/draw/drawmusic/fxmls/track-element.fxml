@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-
-<GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.draw.drawmusic.track.TrackBarElementController">
+<?import javafx.scene.shape.Circle?>
+<GridPane fx:id="gridPane" stylesheets="@../css/track-element.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.draw.drawmusic.track.TrackBarElementController">
   <columnConstraints>
-    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="64.0" />
+    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="54.0" />
       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="120.0" />
-    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="120.0" />
+    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="30.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="30.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="30.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="30.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints prefHeight="42.0" vgrow="ALWAYS" />
@@ -18,7 +22,7 @@
    <children>
       <Circle fx:id="colorCircle" radius="12.0" strokeWidth="3.0" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="2">
          <GridPane.margin>
-            <Insets bottom="30.0" left="30.0" right="20.0" top="30.0" />
+            <Insets bottom="30.0" left="25.0" right="20.0" top="30.0" />
          </GridPane.margin>
       </Circle>
       <MenuButton fx:id="chooseInstrument" mnemonicParsing="false" prefWidth="120.0" text="MenuButton" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -26,6 +30,20 @@
               <Insets bottom="8.0" top="8.0" />
           </GridPane.margin>
       </MenuButton>
-      <TextField fx:id="inputTrackName" minWidth="120.0" maxWidth="120.0" style="-fx-text-fill: white" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+      <TextField fx:id="inputTrackName" maxWidth="120.0" minWidth="120.0" style="-fx-text-fill: white" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+      <ToggleButton mnemonicParsing="false" styleClass="button-in-trackbar" GridPane.columnIndex="2">
+          <graphic>
+              <Circle fill="red" radius="10.0" />
+          </graphic>
+      </ToggleButton>
+      <ToggleButton mnemonicParsing="false" minHeight="30.0" prefWidth="40.0" styleClass="mute" GridPane.columnIndex="3" />
+      <ToggleButton mnemonicParsing="false" minHeight="30.0" prefWidth="40.0" styleClass="visibility" GridPane.columnIndex="4" />
+      <Button mnemonicParsing="false" GridPane.columnIndex="5" styleClass="button-in-trackbar" onAction="#trashButtonClicked">
+          <graphic>
+              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/trash.png" />
+              </ImageView>
+          </graphic>
+      </Button>
    </children>
 </GridPane>

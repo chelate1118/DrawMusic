@@ -5,7 +5,7 @@ import com.draw.drawmusic.properties.Instrument;
 import com.draw.drawmusic.properties.Palette;
 
 public class Track {
-    private static int CURRENT_ID = 0;
+    private static int NEXT_ID = 1;
     public TrackBarElementController trackElement;
     public TrackSelect trackSelect;
     public Editor editor;
@@ -13,9 +13,9 @@ public class Track {
     public Instrument instrument;
     public int ID;
 
-    public Track(TrackBarElementController element, TrackSelect trackSelect, Palette palette) {
-        this.ID = ++CURRENT_ID;
-        this.trackElement = element;
+    public Track(TrackBarElementController trackElement, TrackSelect trackSelect, Palette palette) {
+        this.ID = NEXT_ID++;
+        this.trackElement = trackElement;
         this.trackSelect = trackSelect;
         this.palette = palette;
         this.instrument = Instrument.DEFAULT;

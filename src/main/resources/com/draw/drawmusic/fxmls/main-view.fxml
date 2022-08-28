@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -40,28 +41,64 @@
    <left>
       <BorderPane>
          <center>
-            <ScrollPane fx:id="trackBarScrollPane" prefWidth="400.0">
+            <ScrollPane fx:id="trackBarScrollPane" prefWidth="420.0">
                <content>
                   <VBox fx:id="trackBarContent" style="-fx-padding: 5 0 110 0;" styleClass="track-bar" />
                </content>
             </ScrollPane>
          </center>
          <top>
-             <ToolBar prefHeight="20.0" prefWidth="40.0" BorderPane.alignment="CENTER">
+             <ToolBar prefHeight="20.0" prefWidth="40.0" BorderPane.alignment="CENTER" fx:id="toolBar">
                <items>
-                  <Button mnemonicParsing="false" onAction="#plusButtonClicked" prefHeight="17.5" prefWidth="17.5" styleClass="buttonInToolBar">
+                  <Button mnemonicParsing="false" prefHeight="17.5" prefWidth="17.5" styleClass="buttonInToolBar">
                      <graphic>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                             <Image requestedHeight="40.0" requestedWidth="40.0" url="@../images/plus.png" />
                         </ImageView>
                      </graphic>
                   </Button>
+                   <Pane HBox.hgrow="ALWAYS" />
+                  <Label text="Label" />
                </items>
             </ToolBar>
          </top>
       </BorderPane>
    </left>
    <center>
-      <StackPane fx:id="stackPane" prefHeight="502.0" prefWidth="601.0" />
+      <BorderPane>
+         <center>
+            <StackPane fx:id="stackPane" prefHeight="502.0" prefWidth="601.0" />
+         </center>
+         <top>
+            <VBox>
+               <children>
+                  <TitledPane animated="false" expanded="false" text="tempo">
+                     <content>
+                        <ScrollPane prefHeight="120.0" prefWidth="200.0">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="200.0">
+                                 <children>
+                                    <LineChart>
+                                      <xAxis>
+                                        <CategoryAxis side="BOTTOM" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis side="LEFT" />
+                                      </yAxis>
+                                    </LineChart>
+                                 </children></AnchorPane>
+                          </content>
+                        </ScrollPane>
+                     </content>
+                  </TitledPane>
+                  <TitledPane animated="false" expanded="false" text="dynamic">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="200.0" />
+                    </content>
+                  </TitledPane>
+               </children>
+            </VBox>
+         </top>
+      </BorderPane>
    </center>
 </BorderPane>
