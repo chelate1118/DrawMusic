@@ -1,5 +1,6 @@
 package com.draw.drawmusic
 
+import com.draw.drawmusic.track.TrackBar
 import javafx.application.Application
 import javafx.fxml.FXMLLoader
 import javafx.scene.Scene
@@ -28,6 +29,10 @@ class MainApplicationManager : Application() {
             scene = Scene(fxmlLoader.load(), DEFAULT_WIDTH, DEFAULT_HEIGHT)
         }
 
+        private fun setKeyboardShortcuts() {
+            TrackBar.setKeyboardShortcuts()
+        }
+
         private fun setStyle(cssFilePath : String) {
             scene.stylesheets.add(MainApplicationManager::class.java.getResource("css/".plus(cssFilePath))?.toString())
         }
@@ -44,6 +49,7 @@ class MainApplicationManager : Application() {
         fun changeStage(fxmlFilePath: String, cssFilePath: String, title: String,
                         iconPath: String, isMaximized: WindowSize) {
             setScene(fxmlFilePath)
+            setKeyboardShortcuts()
             setStyle(cssFilePath)
             setStage(title, iconPath, isMaximized)
 

@@ -1,11 +1,16 @@
 package com.draw.drawmusic.track;
 
+import com.draw.drawmusic.MainApplicationManager;
 import com.draw.drawmusic.controllers.FXMLController;
 import javafx.animation.FadeTransition;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToolBar;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
@@ -23,11 +28,6 @@ public class TrackBar {
     private static final ArrayList<Track> trackElements = new ArrayList<>();
     public static ArrayList<Track> getTrackElements() { return trackElements; }
 
-    private static void fitSize() {
-        scrollPane.setFitToWidth(true);
-        scrollPane.setFitToHeight(true);
-    }
-
     public static void init(VBox _trackBarContent, ScrollPane _trackBarScrollPane, ToolBar _toolBar) {
         contentBar = _trackBarContent;
         scrollPane = _trackBarScrollPane;
@@ -39,6 +39,11 @@ public class TrackBar {
         System.out.println("[TrackBar : init()] TrackBar initialized");
     }
 
+    private static void fitSize() {
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+    }
+
     private static void setToolBarEvent() {
         Button addButton = (Button) toolBar.getItems().get(0);
         displayTrackNumbers = (Label) toolBar.getItems().get(toolBar.getItems().size() - 1);
@@ -46,6 +51,15 @@ public class TrackBar {
         displayTrackNumbers.setText("0/" + TRACK_MAX_NUMBER);
 
         addButton.setOnAction(actionEvent -> addElement());
+    }
+
+    public static void setKeyboardShortcuts() {
+        MainApplicationManager.Companion.getScene().addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
+            final KeyCombination keyComb = new KeyCodeCombination(KeyCode.DELETE, KeyCombination.CONTROL_DOWN);
+            if (keyComb.match(keyEvent)) {
+                deleteSelected();
+            }
+        });
     }
 
     private static void setDisplayTrackNumbers() {
@@ -73,6 +87,18 @@ public class TrackBar {
         setDisplayTrackNumbers();
 
         System.out.println("[TrackBar : addElement()] New track added : " + trackElements.get(insertIndex));
+    }
+
+    private static void deleteSelected() {
+        final ArrayList<Track> selected = new ArrayList<>();
+        for(Track element : trackElements) {
+            if(element.trackSelect != TrackSelect.unSelected) {
+                selected.add(element);
+            }
+        }
+        for(Track element : selected) {
+            deleteElement(element);
+        }
     }
 
     public static void deleteElement(Track track) {
