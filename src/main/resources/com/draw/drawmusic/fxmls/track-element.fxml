@@ -59,14 +59,14 @@
               </ImageView>
           </graphic>
       </Button>
-      <Button mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="button-in-trackbar" onAction="#moveDown">
+      <Button mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="button-in-trackbar" onAction="#moveUp">
           <graphic>
               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../images/up_arrow.png" />
               </ImageView>
           </graphic>
       </Button>
-       <Button mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="1" styleClass="button-in-trackbar" onAction="#moveUp">
+       <Button mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="1" styleClass="button-in-trackbar" onAction="#moveDown">
            <graphic>
                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                    <Image url="@../images/down_arrow.png" />

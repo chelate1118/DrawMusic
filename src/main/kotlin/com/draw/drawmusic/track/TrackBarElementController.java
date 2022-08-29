@@ -4,7 +4,6 @@ import com.draw.drawmusic.history.DeleteTrack;
 import com.draw.drawmusic.properties.Instrument;
 import com.draw.drawmusic.properties.Palette;
 import com.draw.drawmusic.tools.CalculatorException;
-import com.draw.drawmusic.tools.Order;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -58,8 +57,7 @@ public class TrackBarElementController implements Initializable {
     }
 
     private void connectToParent() {
-        parent = new Track(this, TrackSelect.unSelected, Palette.next(),
-                Order.nextOrderThanLast(TrackBar.lastOrder()));
+        parent = new Track(this, TrackSelect.unSelected, Palette.next(), TrackBar.makeLastOrder());
     }
 
     private void makeShape() {

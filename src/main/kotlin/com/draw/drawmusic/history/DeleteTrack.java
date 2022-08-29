@@ -12,7 +12,7 @@ public class DeleteTrack extends Behaviors{
     }
 
     public static void saveNewHistory(Track objectAdded) {
-        new AddTrack(objectAdded);
+        new DeleteTrack(objectAdded);
     }
 
     @Override

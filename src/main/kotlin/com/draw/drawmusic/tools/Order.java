@@ -11,7 +11,7 @@ public class Order {
 
     public static final Order DEFAULT = new Order(0.0);
 
-    public static Order nextOrderThanLast(Order lastOrder) {
+    public static Order nextOrderThan(Order lastOrder) {
         return new Order(lastOrder.value + BIGGER_AMOUNT);
     }
 
@@ -19,17 +19,22 @@ public class Order {
         return new Order((a.value + b.value) / 2);
     }
 
-    public static Order previousOrderThanFirst(Order firstOrder) {
+    public static Order previousOrderThan(Order firstOrder) {
         return new Order(firstOrder.value - BIGGER_AMOUNT);
     }
 
     public static void swap(Order a, Order b) {
         double tmp = a.value;
-        b.value = a.value;
-        a.value = tmp;
+        a.value = b.value;
+        b.value = tmp;
     }
 
     public static int compare(Order a, Order b) {
         return Double.compare(a.value, b.value);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
     }
 }

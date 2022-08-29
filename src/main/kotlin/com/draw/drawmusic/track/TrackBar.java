@@ -30,7 +30,6 @@ public class TrackBar {
     private static Label displayTrackNumbers;
     private static Button addButton;
     private static final ArrayList<Track> trackElements = new ArrayList<>();
-    public static ArrayList<Track> getTrackElements() { return trackElements; }
 
     public static void init(VBox _trackBarContent, ScrollPane _trackBarScrollPane, ToolBar _toolBar) {
         contentBar = _trackBarContent;
@@ -53,16 +52,17 @@ public class TrackBar {
 
     public static void matchKeyboardShortcuts() {
         KeyBoardTool.setKeyEventHandler(TrackBar::deleteSelectedElements, KeyCode.DELETE, KeyCombination.SHIFT_DOWN);
-        KeyBoardTool.setKeyEventHandler(TrackBar::addElementCommand, KeyCode.N, KeyCombination.CONTROL_DOWN);
+        KeyBoardTool.setKeyEventHandler(TrackBar::addButtonClicked, KeyCode.N, KeyCombination.CONTROL_DOWN);
     }
 
-    public static void addElementCommand() {
+    public static void addButtonClicked() {
         loadTrackElementFXML();
         AddTrack.saveNewHistory(ArrayTool.last(trackElements));
     }
 
     public static void addElement(Track newElement) {
         trackElements.add(newElement);
+        syncOrderToDisplay();
         displayElements();
         selectAndUpdateElements(newElement, false, false);
         fadeElement(newElement);
@@ -87,29 +87,26 @@ public class TrackBar {
         displayElements();
     }
 
-    public static void moveDown(Track a) {
+    public static void moveUp(Track a) {
         switchTwoTracks(a, ArrayTool.previous(trackElements, a));
     }
 
-    public static void moveUp(Track a) {
+    public static void moveDown(Track a) {
         switchTwoTracks(a, ArrayTool.next(trackElements, a));
     }
 
-    public static Order lastOrder() {
+    public static Order makeLastOrder() {
         if(trackElements.isEmpty()) return Order.DEFAULT;
-        return ArrayTool.last(trackElements).orderInTrackBar;
-    }
-
-    public static Order firstOrder() {
-        return ArrayTool.first(trackElements).orderInTrackBar;
+        return Order.nextOrderThan(ArrayTool.last(trackElements).orderInTrackBar);
     }
 
     private static void switchTwoTracks(Track a, Track b) {
         Order.swap(a.orderInTrackBar, b.orderInTrackBar);
-        matchElementsOrder();
+        syncOrderToDisplay();
+        displayElements();
     }
 
-    private static void matchElementsOrder() {
+    private static void syncOrderToDisplay() {
         Collections.sort(trackElements);
     }
 
@@ -120,7 +117,7 @@ public class TrackBar {
     }
 
     private static void setToolBarEvent() {
-        addButton.setOnAction(actionEvent -> addElementCommand());
+        addButton.setOnAction(actionEvent -> addButtonClicked());
     }
 
     private static void loadTrackElementFXML() {
