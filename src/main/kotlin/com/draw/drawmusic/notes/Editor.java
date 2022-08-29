@@ -14,7 +14,6 @@ public class Editor {
 
     public static void init(StackPane _stackPane) {
         stackPane = _stackPane;
-        System.out.println("[Editor : init()] Editor initialized");
     }
 
     private final Track parent;

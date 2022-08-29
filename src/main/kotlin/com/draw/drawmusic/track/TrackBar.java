@@ -1,20 +1,23 @@
 package com.draw.drawmusic.track;
 
-import com.draw.drawmusic.MainApplicationManager;
 import com.draw.drawmusic.controllers.FXMLController;
+import com.draw.drawmusic.history.AddTrack;
+import com.draw.drawmusic.tools.ArrayTool;
+import com.draw.drawmusic.tools.KeyBoardTool;
+import com.draw.drawmusic.tools.Order;
 import javafx.animation.FadeTransition;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Every field and method are static
@@ -25,6 +28,7 @@ public class TrackBar {
     private static VBox contentBar;
     private static ScrollPane scrollPane;
     private static Label displayTrackNumbers;
+    private static Button addButton;
     private static final ArrayList<Track> trackElements = new ArrayList<>();
     public static ArrayList<Track> getTrackElements() { return trackElements; }
 
@@ -33,70 +37,46 @@ public class TrackBar {
         scrollPane = _trackBarScrollPane;
         toolBar = _toolBar;
 
-        fitSize();
-        setToolBarEvent();
-
-        System.out.println("[TrackBar : init()] TrackBar initialized");
+        fitScrollPaneSize();
+        setToolBar();
     }
 
-    private static void fitSize() {
+    private static void fitScrollPaneSize() {
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(true);
     }
 
-    private static void setToolBarEvent() {
-        Button addButton = (Button) toolBar.getItems().get(0);
-        displayTrackNumbers = (Label) toolBar.getItems().get(toolBar.getItems().size() - 1);
-
-        displayTrackNumbers.setText("0/" + TRACK_MAX_NUMBER);
-
-        addButton.setOnAction(actionEvent -> addElement());
+    private static void setToolBar() {
+        matchToolBarItems();
+        setToolBarEvent();
     }
 
-    public static void setKeyboardShortcuts() {
-        MainApplicationManager.Companion.getScene().addEventFilter(KeyEvent.KEY_PRESSED, keyEvent -> {
-            final KeyCombination keyComb = new KeyCodeCombination(KeyCode.DELETE, KeyCombination.CONTROL_DOWN);
-            if (keyComb.match(keyEvent)) {
-                deleteSelected();
-            }
-        });
+    public static void matchKeyboardShortcuts() {
+        KeyBoardTool.setKeyEventHandler(TrackBar::deleteSelectedElements, KeyCode.DELETE, KeyCombination.SHIFT_DOWN);
+        KeyBoardTool.setKeyEventHandler(TrackBar::addElementCommand, KeyCode.N, KeyCombination.CONTROL_DOWN);
     }
 
-    private static void setDisplayTrackNumbers() {
-        displayTrackNumbers.setText(trackElements.size() + "/" + TRACK_MAX_NUMBER);
+    public static void addElementCommand() {
+        loadTrackElementFXML();
+        AddTrack.saveNewHistory(ArrayTool.last(trackElements));
     }
 
-    public static void addSelected(Track element, boolean ctrlClicked, boolean shiftClicked) {
+    public static void addElement(Track newElement) {
+        trackElements.add(newElement);
+        displayElements();
+        selectAndUpdateElements(newElement, false, false);
+        fadeElement(newElement);
+        scrollDownPossible();
+        setDisplayTrackNumbers();
+    }
+
+    public static void selectAndUpdateElements(Track element, boolean ctrlClicked, boolean shiftClicked) {
         selectElements(element, ctrlClicked, shiftClicked);
         updateElements();
     }
 
-    private static void addElement() {
-        if(trackElements.size() >= TRACK_MAX_NUMBER) {
-            System.out.println("[TrackBar : addElement()] Failed : Too many tracks");
-            return;
-        }
-
-        FXMLController.Companion.fxmlLoad("track-element.fxml");
-        int insertIndex = trackElements.size() - 1;
-
-        drawElements();
-        addSelected(trackElements.get(insertIndex), false, false);
-        fadeElement(insertIndex);
-        scrollDown();
-        setDisplayTrackNumbers();
-
-        System.out.println("[TrackBar : addElement()] New track added : " + trackElements.get(insertIndex));
-    }
-
-    private static void deleteSelected() {
-        final ArrayList<Track> selected = new ArrayList<>();
-        for(Track element : trackElements) {
-            if(element.trackSelect != TrackSelect.unSelected) {
-                selected.add(element);
-            }
-        }
-        for(Track element : selected) {
+    private static void deleteSelectedElements() {
+        for(Track element : getSelectedList()) {
             deleteElement(element);
         }
     }
@@ -104,10 +84,65 @@ public class TrackBar {
     public static void deleteElement(Track track) {
         trackElements.remove(track);
         setDisplayTrackNumbers();
-        drawElements();
+        displayElements();
     }
 
-    private static void drawElements() {
+    public static void moveDown(Track a) {
+        switchTwoTracks(a, ArrayTool.previous(trackElements, a));
+    }
+
+    public static void moveUp(Track a) {
+        switchTwoTracks(a, ArrayTool.next(trackElements, a));
+    }
+
+    public static Order lastOrder() {
+        if(trackElements.isEmpty()) return Order.DEFAULT;
+        return ArrayTool.last(trackElements).orderInTrackBar;
+    }
+
+    public static Order firstOrder() {
+        return ArrayTool.first(trackElements).orderInTrackBar;
+    }
+
+    private static void switchTwoTracks(Track a, Track b) {
+        Order.swap(a.orderInTrackBar, b.orderInTrackBar);
+        matchElementsOrder();
+    }
+
+    private static void matchElementsOrder() {
+        Collections.sort(trackElements);
+    }
+
+    private static void matchToolBarItems() {
+        addButton = (Button) ArrayTool.first(toolBar.getItems());
+        displayTrackNumbers = (Label) ArrayTool.last(toolBar.getItems());
+        displayTrackNumbers.setText("0/" + TRACK_MAX_NUMBER);
+    }
+
+    private static void setToolBarEvent() {
+        addButton.setOnAction(actionEvent -> addElementCommand());
+    }
+
+    private static void loadTrackElementFXML() {
+        FXMLController.Companion.fxmlLoad("track-element.fxml");
+    }
+
+    @NotNull
+    private static ArrayList<Track> getSelectedList() {
+        final ArrayList<Track> selected = new ArrayList<>();
+        for(Track element : trackElements) {
+            if(element.trackSelect != TrackSelect.unSelected) {
+                selected.add(element);
+            }
+        }
+        return selected;
+    }
+
+    private static void setDisplayTrackNumbers() {
+        displayTrackNumbers.setText(trackElements.size() + "/" + TRACK_MAX_NUMBER);
+    }
+
+    private static void displayElements() {
         contentBar.getChildren().clear();
         for (Track element: trackElements) {
             contentBar.getChildren().add(element.trackElement.getGridPane());
@@ -120,14 +155,14 @@ public class TrackBar {
         }
     }
 
-    private static void fadeElement(int node) {
-        FadeTransition ft = new FadeTransition(Duration.millis(500), contentBar.getChildren().get(node));
+    private static void fadeElement(@NotNull Track node) {
+        FadeTransition ft = new FadeTransition(Duration.millis(500), node.trackElement.getGridPane());
         ft.setFromValue(0);
         ft.setToValue(1);
         ft.play();
     }
 
-    private static void scrollDown() {
+    private static void scrollDownPossible() {
         scrollPane.setVvalue(scrollPane.getVmax());
     }
 

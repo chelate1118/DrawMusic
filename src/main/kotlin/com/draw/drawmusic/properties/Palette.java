@@ -19,7 +19,6 @@ public record Palette(Color color) {
     public static void init(String _theme) throws IOException {
         theme = _theme;
         parseJSON();
-        System.out.println("[Palette : init()] Palette initialized : Read " + theme);
     }
 
     private static void parseJSON() throws IOException {

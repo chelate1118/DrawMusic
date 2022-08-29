@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.*?>
+
 <GridPane fx:id="gridPane" stylesheets="@../css/track-element.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.draw.drawmusic.track.TrackBarElementController">
   <columnConstraints>
     <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="54.0" />
@@ -33,25 +33,25 @@
       <TextField fx:id="inputTrackName" maxWidth="120.0" minWidth="120.0" style="-fx-text-fill: white" GridPane.columnIndex="1" GridPane.rowIndex="0" />
       <ToggleButton mnemonicParsing="false" styleClass="button-in-trackbar" GridPane.columnIndex="2">
           <tooltip>
-              <Tooltip text="Record"/>
+              <Tooltip text="Record" />
           </tooltip>
           <graphic>
               <Circle fill="red" radius="10.0" />
           </graphic>
       </ToggleButton>
-      <ToggleButton mnemonicParsing="false" minHeight="30.0" prefWidth="40.0" styleClass="mute" GridPane.columnIndex="3" >
+      <ToggleButton minHeight="30.0" mnemonicParsing="false" prefWidth="40.0" styleClass="mute" GridPane.columnIndex="3">
           <tooltip>
-              <Tooltip text="Mute/Unmute"/>
+              <Tooltip text="Mute/Unmute" />
           </tooltip>
       </ToggleButton>
-      <ToggleButton mnemonicParsing="false" minHeight="30.0" prefWidth="40.0" styleClass="visibility" GridPane.columnIndex="4" >
+      <ToggleButton minHeight="30.0" mnemonicParsing="false" prefWidth="40.0" styleClass="visibility" GridPane.columnIndex="4">
           <tooltip>
-              <Tooltip text="View/Hide"/>
+              <Tooltip text="View/Hide" />
           </tooltip>
       </ToggleButton>
-      <Button mnemonicParsing="false" GridPane.columnIndex="5" styleClass="button-in-trackbar" onAction="#trashButtonClicked">
+      <Button mnemonicParsing="false" onAction="#trashButtonClicked" styleClass="button-in-trackbar" GridPane.columnIndex="5">
           <tooltip>
-              <Tooltip text="Delete (ctrl+delete)"/>
+              <Tooltip text="Delete (ctrl+delete)" />
           </tooltip>
           <graphic>
               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -59,5 +59,19 @@
               </ImageView>
           </graphic>
       </Button>
+      <Button mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="button-in-trackbar" onAction="#moveDown">
+          <graphic>
+              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../images/up_arrow.png" />
+              </ImageView>
+          </graphic>
+      </Button>
+       <Button mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="1" styleClass="button-in-trackbar" onAction="#moveUp">
+           <graphic>
+               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                   <Image url="@../images/down_arrow.png" />
+               </ImageView>
+           </graphic>
+       </Button>
    </children>
 </GridPane>

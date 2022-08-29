@@ -1,8 +1,10 @@
 package com.draw.drawmusic.track;
 
+import com.draw.drawmusic.history.DeleteTrack;
 import com.draw.drawmusic.properties.Instrument;
 import com.draw.drawmusic.properties.Palette;
 import com.draw.drawmusic.tools.CalculatorException;
+import com.draw.drawmusic.tools.Order;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -33,19 +35,31 @@ public class TrackBarElementController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        init();
+        connectToParent();
         makeShape();
         makeEventControl();
+        TrackBar.addElement(parent);
     }
 
     @FXML
     public void trashButtonClicked() {
+        DeleteTrack.saveNewHistory(parent);
         TrackBar.deleteElement(parent);
     }
 
-    private void init() {
-        parent = new Track(this, TrackSelect.unSelected, Palette.next());
-        TrackBar.getTrackElements().add(parent);
+    @FXML
+    public void moveUp() {
+        TrackBar.moveUp(parent);
+    }
+
+    @FXML
+    public void moveDown() {
+        TrackBar.moveDown(parent);
+    }
+
+    private void connectToParent() {
+        parent = new Track(this, TrackSelect.unSelected, Palette.next(),
+                Order.nextOrderThanLast(TrackBar.lastOrder()));
     }
 
     private void makeShape() {
@@ -114,7 +128,7 @@ public class TrackBarElementController implements Initializable {
     private void makeEventControl() {
         gridPane.addEventFilter(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
             if(mouseEvent.getButton() == MouseButton.PRIMARY)
-                TrackBar.addSelected(parent, mouseEvent.isControlDown(), mouseEvent.isShiftDown());
+                TrackBar.selectAndUpdateElements(parent, mouseEvent.isControlDown(), mouseEvent.isShiftDown());
         });
     }
 
