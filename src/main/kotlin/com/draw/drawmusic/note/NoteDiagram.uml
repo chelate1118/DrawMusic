@@ -3,63 +3,43 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="261.392064600964" y="-175.3505869425477">com.draw.drawmusic.notes.MusicNote</node>
-    <node x="-200.55107887825494" y="-492.28684522069335">com.draw.drawmusic.notes.Editor</node>
-    <node x="42.156137448646064" y="-276.3505869425477">com.draw.drawmusic.track.TrackBarElement</node>
-    <node x="558.5191781829885" y="-407.8398253531437">com.draw.drawmusic.notes.Play</node>
-    <node x="441.52245611992566" y="315.8599787776668">com.draw.drawmusic.notes.BlackKey</node>
-    <node x="80.16746416810264" y="315.8599787776668">com.draw.drawmusic.notes.ViolinNote</node>
-    <node x="-26.546219168005052" y="44.82639297889435">com.draw.drawmusic.notes.PlayNote</node>
-    <node x="-238.0565952004492" y="315.8599787776668">com.draw.drawmusic.notes.PianoNote</node>
-    <node x="166.65613744864606" y="-480.28684522069335">com.draw.drawmusic.notes.NoteSelect</node>
-    <node x="802.8774480717487" y="307.4029965020344">com.draw.drawmusic.notes.WhiteKey</node>
-    <node x="681.877558708474" y="57.32639297889435">com.draw.drawmusic.notes.ShapeNote</node>
+    <node x="466.5" y="127.0">com.draw.drawmusic.note.ShapeNote</node>
+    <node x="170.5" y="207.5">com.draw.drawmusic.note.BlackKey</node>
+    <node x="654.0" y="114.5">com.draw.drawmusic.note.PlayableNote</node>
+    <node x="891.5" y="220.0">com.draw.drawmusic.note.ViolinNote</node>
+    <node x="619.5" y="-77.5">com.draw.drawmusic.note.MusicNote</node>
+    <node x="-129.5" y="207.5">com.draw.drawmusic.note.WhiteKey</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="com.draw.drawmusic.notes.BlackKey" target="com.draw.drawmusic.notes.ShapeNote" relationship="GENERALIZATION">
-      <point x="-1.6480699570091701" y="-0.24946553263362148" />
-      <point x="571.0224561199257" y="357.1105132450332" />
-      <point x="571.0224561199257" y="86.32639297889435" />
-      <point x="749.4081125827814" y="86.32639297889435" />
-      <point x="-5.969446125692571" y="3.369385166801038" />
+    <edge source="com.draw.drawmusic.note.ShapeNote" target="com.draw.drawmusic.note.MusicNote" relationship="GENERALIZATION">
+      <point x="-0.0" y="-29.0" />
+      <point x="540.0" y="0.0" />
+      <point x="-129.5" y="-0.0" />
     </edge>
-    <edge source="com.draw.drawmusic.notes.PianoNote" target="com.draw.drawmusic.notes.PlayNote" relationship="GENERALIZATION">
-      <point x="3.516032286541929" y="-0.530094671706479" />
-      <point x="-110.36754966887415" y="368.82988410596033" />
-      <point x="-110.36754966887415" y="85.43418874172187" />
-      <point x="-32.01586692471014" y="-0.8922042371724785" />
+    <edge source="com.draw.drawmusic.note.PlayableNote" target="com.draw.drawmusic.note.MusicNote" relationship="GENERALIZATION">
+      <point x="0.0" y="-41.5" />
+      <point x="0.0" y="77.5" />
     </edge>
-    <edge source="com.draw.drawmusic.notes.ShapeNote" target="com.draw.drawmusic.notes.MusicNote" relationship="GENERALIZATION">
-      <point x="1.6314583035637042E-4" y="-28.999604899424128" />
-      <point x="755.3777218543044" y="-72.8505869425477" />
-      <point x="390.89197350993373" y="-72.8505869425477" />
-      <point x="-9.109103024229626E-5" y="102.49988495579275" />
+    <edge source="com.draw.drawmusic.note.BlackKey" target="com.draw.drawmusic.note.ShapeNote" relationship="GENERALIZATION">
+      <point x="129.5" y="-0.0" />
+      <point x="540.0" y="249.0" />
+      <point x="-0.0" y="29.0" />
     </edge>
-    <edge source="com.draw.drawmusic.notes.ViolinNote" target="com.draw.drawmusic.notes.PlayNote" relationship="GENERALIZATION">
-      <point x="-3.6120005919436835" y="3.7314947322670378" />
-      <point x="209.66746416810264" y="373.09147350993385" />
-      <point x="209.66746416810264" y="86.32639297889435" />
-      <point x="57.835913907284834" y="86.32639297889435" />
-      <point x="0.8821330752898859" y="41.49962693225933" />
+    <edge source="com.draw.drawmusic.note.ViolinNote" target="com.draw.drawmusic.note.PlayableNote" relationship="GENERALIZATION">
+      <point x="-129.5" y="-0.0" />
+      <point x="749.0" y="273.5" />
+      <point x="-0.0" y="41.5" />
     </edge>
-    <edge source="com.draw.drawmusic.notes.PlayNote" target="com.draw.drawmusic.notes.MusicNote" relationship="GENERALIZATION">
-      <point x="-14.117866924710114" y="41.49962693225933" />
-      <point x="42.835913907284834" y="-72.8505869425477" />
-      <point x="390.89197350993373" y="-72.8505869425477" />
-      <point x="-9.109103024229626E-5" y="102.49988495579275" />
-    </edge>
-    <edge source="com.draw.drawmusic.notes.WhiteKey" target="com.draw.drawmusic.notes.ShapeNote" relationship="GENERALIZATION">
-      <point x="4.540598285867077" y="-7.773443521901868" />
-      <point x="936.9180463576158" y="86.32639297889435" />
-      <point x="838.901490066225" y="86.32639297889435" />
-      <point x="838.901490066225" y="86.49958609271528" />
-      <point x="6.8153220862279795" y="0.17319311382092906" />
+    <edge source="com.draw.drawmusic.note.WhiteKey" target="com.draw.drawmusic.note.ShapeNote" relationship="GENERALIZATION">
+      <point x="-0.0" y="-41.5" />
+      <point x="0.0" y="156.0" />
+      <point x="-73.5" y="-0.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Compact" zoom="0.9386169386169386" showDependencies="false" x="430.5" y="103.85306291390725" />
+  <settings layout="Hierarchic Compact" zoom="0.9386169386169386" showDependencies="false" x="0.0" y="249.0" />
   <SelectedNodes>
-    <node>com.draw.drawmusic.track.TrackBarElement</node>
+    <node>com.draw.drawmusic.note.WhiteKey</node>
   </SelectedNodes>
   <Categories>
     <Category>Constructors</Category>
