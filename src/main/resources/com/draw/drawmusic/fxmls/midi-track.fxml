@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<GridPane fx:id="gridPane" stylesheets="@../css/track-element.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.draw.drawmusic.track.TrackBarElementController">
+<GridPane fx:id="gridPane" stylesheets="@../css/track-element.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.draw.drawmusic.track.MidiTrackController">
   <columnConstraints>
     <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="54.0" />
       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="120.0" />

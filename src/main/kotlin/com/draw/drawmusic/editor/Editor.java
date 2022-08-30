@@ -1,6 +1,7 @@
-package com.draw.drawmusic.notes;
+package com.draw.drawmusic.editor;
 
-import com.draw.drawmusic.times.Bars;
+import com.draw.drawmusic.note.*;
+import com.draw.drawmusic.note_properties.Bars;
 import com.draw.drawmusic.track.Track;
 import javafx.geometry.Pos;
 import javafx.scene.Group;

@@ -1,4 +1,4 @@
-package com.draw.drawmusic.notes;
+package com.draw.drawmusic.note;
 
 import com.draw.drawmusic.track.Track;
 

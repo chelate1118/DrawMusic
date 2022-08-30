@@ -1,4 +1,4 @@
-package com.draw.drawmusic.times;
+package com.draw.drawmusic.note_properties;
 
 import org.jetbrains.annotations.NotNull;
 

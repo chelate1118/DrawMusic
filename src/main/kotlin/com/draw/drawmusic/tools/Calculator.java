@@ -34,8 +34,15 @@ public class Calculator {
                 0, 1, min, max);
     }
 
-    public static double changeWithSigmoid(double val, double change) throws CalculatorException {
-        return changeWithSigmoidInRange(0, 1, val, change);
+    public static double changeWithSigmoid(double val, double change) {
+        double ans = 0;
+        try {
+            ans = changeWithSigmoidInRange(0, 1, val, change);
+        } catch (CalculatorException ignored) {
+
+        }
+
+        return ans;
     }
 
     public static double harmonicMean(double x, double y) {

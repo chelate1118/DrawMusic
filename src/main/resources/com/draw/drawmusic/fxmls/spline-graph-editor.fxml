@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TitledPane animated="false" text="tempo" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.draw.drawmusic.editor.SplineGraphEditor" fx:id="titledPane"
+            stylesheets="@../css/spline-graph-editor.css">
+    <content>
+        <ScrollPane prefHeight="120.0">
+            <content>
+                <Group BorderPane.alignment="TOP_LEFT">
+                    <children>
+                        <LineChart legendSide="LEFT" prefHeight="120.0" maxHeight="120.0">
+                            <padding>
+                                <Insets topRightBottomLeft="0"/>
+                            </padding>
+                            <xAxis>
+                                <CategoryAxis maxHeight="0" opacity="0.0" prefHeight="0" side="BOTTOM"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis maxWidth="0" opacity="0.0" prefWidth="0" side="LEFT"/>
+                            </yAxis>
+                        </LineChart>
+                    </children>
+                </Group>
+            </content>
+        </ScrollPane>
+    </content>
+</TitledPane>

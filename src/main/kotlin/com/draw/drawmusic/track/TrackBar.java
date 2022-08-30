@@ -1,7 +1,7 @@
 package com.draw.drawmusic.track;
 
 import com.draw.drawmusic.controllers.FXMLController;
-import com.draw.drawmusic.history.AddTrack;
+import com.draw.drawmusic.history.TrackHistory;
 import com.draw.drawmusic.tools.ArrayTool;
 import com.draw.drawmusic.tools.KeyBoardTool;
 import com.draw.drawmusic.tools.Order;
@@ -57,17 +57,22 @@ public class TrackBar {
 
     public static void addButtonClicked() {
         loadTrackElementFXML();
-        AddTrack.saveNewHistory(ArrayTool.last(trackElements));
+        TrackHistory.saveAddHistory(ArrayTool.last(trackElements));
     }
 
     public static void addElement(Track newElement) {
         trackElements.add(newElement);
         syncOrderToDisplay();
-        displayElements();
-        selectAndUpdateElements(newElement, false, false);
+        selectElements(newElement, false, false);
+        displayAndUpdateElements();
         fadeElement(newElement);
         scrollDownPossible();
         setDisplayTrackNumbers();
+    }
+
+    private static void displayAndUpdateElements() {
+        displayElements();
+        updateElements();
     }
 
     public static void selectAndUpdateElements(Track element, boolean ctrlClicked, boolean shiftClicked) {
@@ -121,7 +126,7 @@ public class TrackBar {
     }
 
     private static void loadTrackElementFXML() {
-        FXMLController.Companion.fxmlLoad("track-element.fxml");
+        FXMLController.Companion.fxmlLoad("midi-track.fxml");
     }
 
     @NotNull

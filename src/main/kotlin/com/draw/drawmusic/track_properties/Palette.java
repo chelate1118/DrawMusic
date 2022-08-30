@@ -1,7 +1,6 @@
-package com.draw.drawmusic.properties;
+package com.draw.drawmusic.track_properties;
 
 import com.draw.drawmusic.tools.Calculator;
-import com.draw.drawmusic.tools.CalculatorException;
 import com.draw.drawmusic.tools.ResourcePaths;
 import javafx.scene.paint.Color;
 import org.json.JSONObject;
@@ -33,33 +32,21 @@ public record Palette(Color color) {
         return new Palette(Color.web(jsonObject.getString(generateNext.next())));
     }
 
-    /**
-     * CalculatorException while calculate sigmoid
-     */
-    public Color darkColor(double change, double alpha) throws CalculatorException {
+    public Color darkColor(double change, double alpha) {
         return Color.hsb(color.getHue(), color.getSaturation(),
                 Calculator.changeWithSigmoid(color.getBrightness(), -change), alpha);
     }
 
-    /**
-     * CalculatorException while calculate sigmoid
-     */
-    public Color darkColor(double change) throws CalculatorException {
+    public Color darkColor(double change) {
         return Color.hsb(color.getHue(), color.getSaturation(),
                 Calculator.changeWithSigmoid(color.getBrightness(), -change));
     }
 
-    /**
-     * CalculatorException while calculate sigmoid
-     */
-    public Color brightColor(double change, double alpha) throws CalculatorException {
+    public Color brightColor(double change, double alpha) {
         return darkColor(-change, alpha);
     }
 
-    /**
-     * CalculatorException while calculate sigmoid
-     */
-    public Color brightColor(double change) throws CalculatorException {
+    public Color brightColor(double change) {
         return darkColor(-change);
     }
 }

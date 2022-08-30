@@ -1,4 +1,4 @@
-package com.draw.drawmusic.properties;
+package com.draw.drawmusic.track_properties;
 
 import java.util.ArrayList;
 import java.util.Arrays;

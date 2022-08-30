@@ -1,6 +1,6 @@
-package com.draw.drawmusic.notes;
+package com.draw.drawmusic.note;
 
-import com.draw.drawmusic.times.Ticks;
+import com.draw.drawmusic.note_properties.Ticks;
 import javafx.scene.shape.Rectangle;
 import org.jetbrains.annotations.NotNull;
 

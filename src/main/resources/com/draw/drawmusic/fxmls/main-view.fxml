@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -48,7 +47,7 @@
             </ScrollPane>
          </center>
          <top>
-             <ToolBar prefHeight="20.0" prefWidth="40.0" BorderPane.alignment="CENTER" fx:id="toolBar">
+             <ToolBar fx:id="toolBar" prefHeight="20.0" prefWidth="40.0" BorderPane.alignment="CENTER">
                <items>
                   <Button mnemonicParsing="false" prefHeight="17.5" prefWidth="17.5" styleClass="buttonInToolBar">
                      <graphic>
@@ -70,34 +69,7 @@
             <StackPane fx:id="stackPane" prefHeight="502.0" prefWidth="601.0" />
          </center>
          <top>
-            <VBox>
-               <children>
-                  <TitledPane animated="false" expanded="false" text="tempo">
-                     <content>
-                        <ScrollPane prefHeight="120.0" prefWidth="200.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="200.0">
-                                 <children>
-                                    <LineChart>
-                                      <xAxis>
-                                        <CategoryAxis side="BOTTOM" />
-                                      </xAxis>
-                                      <yAxis>
-                                        <NumberAxis side="LEFT" />
-                                      </yAxis>
-                                    </LineChart>
-                                 </children></AnchorPane>
-                          </content>
-                        </ScrollPane>
-                     </content>
-                  </TitledPane>
-                  <TitledPane animated="false" expanded="false" text="dynamic">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="200.0" />
-                    </content>
-                  </TitledPane>
-               </children>
-            </VBox>
+            <VBox fx:id="editorTopSide"/>
          </top>
       </BorderPane>
    </center>
