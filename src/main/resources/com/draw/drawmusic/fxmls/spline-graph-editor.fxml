@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TitledPane animated="false" text="tempo" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.draw.drawmusic.editor.SplineGraphEditor" fx:id="titledPane"
-            stylesheets="@../css/spline-graph-editor.css">
+<TitledPane fx:id="titledPane" animated="false" stylesheets="@../css/spline-graph-editor.css" text="tempo" textFill="WHITE" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.draw.drawmusic.editor.SplineGraphEditor">
     <content>
-        <ScrollPane prefHeight="120.0">
+        <ScrollPane fx:id="scrollPane" prefHeight="120.0" style="-fx-border-color: transparent">
             <content>
-                <Group BorderPane.alignment="TOP_LEFT">
+                <Group fx:id="group" BorderPane.alignment="TOP_LEFT">
                     <children>
-                        <LineChart legendSide="LEFT" prefHeight="120.0" maxHeight="120.0">
-                            <padding>
-                                <Insets topRightBottomLeft="0"/>
-                            </padding>
+                        <LineChart fx:id="lineChart" legendSide="LEFT" maxHeight="120.0" prefHeight="120.0">
                             <xAxis>
-                                <CategoryAxis maxHeight="0" opacity="0.0" prefHeight="0" side="BOTTOM"/>
+                                <CategoryAxis maxHeight="0" opacity="0.0" prefHeight="0" side="TOP" />
                             </xAxis>
                             <yAxis>
-                                <NumberAxis maxWidth="0" opacity="0.0" prefWidth="0" side="LEFT"/>
+                                <NumberAxis maxWidth="0" opacity="0.0" prefWidth="0" side="RIGHT" />
                             </yAxis>
                         </LineChart>
                     </children>

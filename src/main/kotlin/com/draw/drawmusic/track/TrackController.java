@@ -1,5 +1,6 @@
 package com.draw.drawmusic.track;
 
+import com.draw.drawmusic.history.TrackHistory;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.TextField;
@@ -68,5 +69,23 @@ public abstract class TrackController {
 
         gridPane.setBorder(new Border(new BorderStroke(borderColor, BorderStrokeStyle.SOLID,
                 new CornerRadii(10.0), new BorderWidths(3.0))));
+    }
+
+    @FXML
+    public void moveUp() {
+        TrackHistory.saveMoveUpHistory(parent);
+        TrackBar.moveUp(parent);
+    }
+
+    @FXML
+    public void moveDown() {
+        TrackHistory.saveMoveDownHistory(parent);
+        TrackBar.moveDown(parent);
+    }
+
+    @FXML
+    public void trashButtonClicked() {
+        TrackHistory.saveDeleteHistory(parent);
+        TrackBar.deleteElement(parent);
     }
 }

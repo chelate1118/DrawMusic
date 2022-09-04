@@ -9,32 +9,32 @@ use std::io::BufReader;
 use hound;
 use rodio::{Decoder, OutputStream, source::Source};
 use std::f32::consts::PI;
+use std::fmt::Debug;
+use std::str::FromStr;
 use crate::sound::calculator::Spline;
 
-pub(crate) struct Sound {
-    amp : Spline,
+fn split_two_commands<Type1: FromStr, Type2: FromStr>(command: String) -> (Type1, Type2)
+    where <Type1 as FromStr>::Err: Debug, <Type2 as FromStr>::Err: Debug
+{
+    let tmp: Option<(&str, &str)> = command.split_once(' ');
+    (FromStr::from_str(tmp.unwrap().0).unwrap(), FromStr::from_str(tmp.unwrap().1).unwrap())
+}
 
+pub(crate) struct Sound {
+    amp: Spline
 }
 
 impl Sound {
-    const PATH : &'static str = "src/main/resources/com/draw/drawmusic/sound_rust/";
+    const PATH: &'static str = "src/main/resources/com/draw/drawmusic/sound_rust/";
 
     pub(crate) fn generate(command: String) {
-        let file_name : String;
-        let frequency : f64;
-
-        {
-            let tmp : Option<(&str, &str)> = command.split_once(' ');
-            file_name = tmp.unwrap().0.parse().unwrap();
-            frequency = tmp.unwrap().1.parse().unwrap();
-        }
-
-        let file_name : String = format!("{}{}", Sound::PATH, file_name);
+        let (file_name, frequency) = split_two_commands::<String, f64>(command);
+        let file_name: String = format!("{}{}", Sound::PATH, file_name);
         let spec = hound::WavSpec {
-            channels : 1,
-            sample_rate : 44100,
-            bits_per_sample : 16,
-            sample_format : hound::SampleFormat::Int
+            channels: 1,
+            sample_rate: 44100,
+            bits_per_sample: 16,
+            sample_format: hound::SampleFormat::Int,
         };
 
         let mut writer = hound::WavWriter::create(file_name, spec).unwrap();
@@ -43,17 +43,23 @@ impl Sound {
         }
     }
 
-    pub(crate) fn play(file_name: String) {
+    pub(crate) fn play(command: String) {
+        let(file_name, millis) = split_two_commands::<String, u64>(command);
+        Sound::play_with_time(file_name, millis)
+    }
+
+    pub(crate) fn play_with_time(file_name: String, millis: u64) {
         let (_stream, stream_handle) = OutputStream::try_default().unwrap();
 
         let file = BufReader::new(File::open(format!("{}{}", Sound::PATH, file_name)).unwrap());
         let source = Decoder::new(file).unwrap();
         stream_handle.play_raw(source.convert_samples()).ok();
 
-        thread::sleep(std::time::Duration::from_millis(700));
+        thread::sleep(std::time::Duration::from_millis(millis));
     }
 
-    pub(crate) fn init() {
+
+    pub(crate) fn reset() {
         let paths = fs::read_dir(Sound::PATH).unwrap();
 
         for path in paths {

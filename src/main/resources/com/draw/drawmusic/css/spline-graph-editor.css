@@ -1,0 +1,34 @@
+
+.titled-pane > .title {
+    -fx-background-color: #1A1A1A;
+}
+
+.titled-pane > .title > .arrow-button .arrow {
+    -fx-background-color: gray;
+}
+
+.titled-pane > *.content {
+    -fx-background-color: #2F2F2F;
+    -fx-border-width: 0;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.chart {
+    -fx-padding: 0px;
+}
+
+.chart-content {
+    -fx-padding: 0px;
+    -fx-background-color: transparent;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-vertical-grid-lines {
+
+}

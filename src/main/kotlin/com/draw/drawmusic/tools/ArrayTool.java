@@ -32,4 +32,10 @@ public class ArrayTool {
         int index = array.indexOf(element);
         return next(array, index);
     }
+
+    public static <Type> Type closeElement(@NotNull List<Type> array, Type element) {
+        int index = array.indexOf(element);
+        if (index == 0) return next(array, element);
+        return previous(array, element);
+    }
 }

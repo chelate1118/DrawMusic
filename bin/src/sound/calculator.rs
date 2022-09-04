@@ -3,7 +3,7 @@
 use num_bigint::BigInt;
 use num_traits::{Num, Zero, One};
 
-pub(crate) fn sum(command : String) {
+pub(crate) fn sum(command: String) {
     let mut ans: BigInt = BigInt::zero();
     for i in command.split_whitespace() {
         match BigInt::from_str_radix(i, 10) {
@@ -33,12 +33,12 @@ pub(crate) fn multiple(command: String) {
 
 
 pub(crate) struct Polynomial {
-    val : Vec<f64>
+    val: Vec<f64>,
 }
 
 impl Polynomial {
-    pub(crate) fn from_string(x : String) -> Polynomial {
-        let mut ret = Polynomial { val : Vec::new() };
+    pub(crate) fn from_string(x: String) -> Polynomial {
+        let mut ret = Polynomial { val: Vec::new() };
 
         let sp = x.split('$');
         for i in sp {
@@ -48,7 +48,7 @@ impl Polynomial {
         ret
     }
 
-    pub(crate) fn value(&self, x : f64) -> f64 {
+    pub(crate) fn value(&self, x: f64) -> f64 {
         let mut ans = 0f64;
 
         for i in self.val.iter() {
@@ -61,12 +61,12 @@ impl Polynomial {
 }
 
 pub(crate) struct Spline {
-    val : Vec<(f64, f64, Polynomial)>
+    val: Vec<(f64, f64, Polynomial)>,
 }
 
 impl Spline {
-    pub(crate) fn from_string(x : String) -> Spline {
-        let mut ret = Spline { val : Vec::new() };
+    pub(crate) fn from_string(x: String) -> Spline {
+        let mut ret = Spline { val: Vec::new() };
 
         let sp = x.split('#');
         for i in sp {
@@ -78,7 +78,7 @@ impl Spline {
         ret
     }
 
-    fn find(&self, x : f64, st : usize) -> Option<usize> {
+    fn find(&self, x: f64, st: usize) -> Option<usize> {
         if x < self.val[0].0 {
             return None;
         }
@@ -90,7 +90,7 @@ impl Spline {
         None
     }
 
-    pub(crate) fn value(&self, x : f64, st : usize) -> Option<(f64, usize)> {
+    pub(crate) fn value(&self, x: f64, st: usize) -> Option<(f64, usize)> {
         match self.find(x, st) {
             Some(i) => Some((self.val[i].2.value(x), i)),
             None => None

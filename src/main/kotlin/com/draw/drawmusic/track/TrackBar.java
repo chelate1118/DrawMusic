@@ -62,7 +62,7 @@ public class TrackBar {
 
     public static void addElement(Track newElement) {
         trackElements.add(newElement);
-        syncOrderToDisplay();
+        syncOrderInDisplay();
         selectElements(newElement, false, false);
         displayAndUpdateElements();
         fadeElement(newElement);
@@ -72,6 +72,11 @@ public class TrackBar {
 
     private static void displayAndUpdateElements() {
         displayElements();
+        updateElements();
+    }
+
+    public static void selectAndUpdateElements(Track element) {
+        selectElements(element, false, false);
         updateElements();
     }
 
@@ -87,6 +92,7 @@ public class TrackBar {
     }
 
     public static void deleteElement(Track track) {
+        selectAndUpdateElements(ArrayTool.closeElement(trackElements, track));
         trackElements.remove(track);
         setDisplayTrackNumbers();
         displayElements();
@@ -107,11 +113,11 @@ public class TrackBar {
 
     private static void switchTwoTracks(Track a, Track b) {
         Order.swap(a.orderInTrackBar, b.orderInTrackBar);
-        syncOrderToDisplay();
+        syncOrderInDisplay();
         displayElements();
     }
 
-    private static void syncOrderToDisplay() {
+    private static void syncOrderInDisplay() {
         Collections.sort(trackElements);
     }
 

@@ -1,6 +1,5 @@
 package com.draw.drawmusic.track;
 
-import com.draw.drawmusic.history.TrackHistory;
 import com.draw.drawmusic.track_properties.Instrument;
 import com.draw.drawmusic.track_properties.Palette;
 import javafx.fxml.FXML;
@@ -30,24 +29,6 @@ public class MidiTrackController extends TrackController implements Initializabl
         makeShape();
         makeEventControl();
         TrackBar.addElement(parent);
-    }
-
-    @FXML
-    public void trashButtonClicked() {
-        TrackHistory.saveDeleteHistory(parent);
-        TrackBar.deleteElement(parent);
-    }
-
-    @FXML
-    public void moveUp() {
-        TrackHistory.saveMoveUpHistory(parent);
-        TrackBar.moveUp(parent);
-    }
-
-    @FXML
-    public void moveDown() {
-        TrackHistory.saveMoveDownHistory(parent);
-        TrackBar.moveDown(parent);
     }
 
     private void connectToParent() {
