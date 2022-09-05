@@ -1,6 +1,7 @@
 package com.draw.drawmusic.controllers
 
 import com.draw.drawmusic.editor.Editor
+import com.draw.drawmusic.editor.KeyboardEditor
 import com.draw.drawmusic.editor.SplineGraphEditor
 import com.draw.drawmusic.tools.InteractBin
 import com.draw.drawmusic.track.TrackBar
@@ -15,18 +16,27 @@ import java.net.URL
 import java.util.*
 
 class MainViewController : Initializable {
-    @FXML lateinit var trackBarContent: VBox
-    @FXML lateinit var trackBarScrollPane : ScrollPane
-    @FXML lateinit var toolBar : ToolBar
-    @FXML lateinit var stackPane : StackPane
-    @FXML lateinit var editorTopSide: VBox
+    @FXML
+    lateinit var trackBarContent: VBox
+    lateinit var trackBarScrollPane : ScrollPane
+    lateinit var toolBar : ToolBar
+    lateinit var editorTopSide: VBox
+    lateinit var editorStackPane : StackPane
+    lateinit var editorScrollPane: ScrollPane
+    lateinit var keyboardScrollPane: ScrollPane
 
     @FXML
     override fun initialize(p0: URL?, p1: ResourceBundle?) {
         Palette.init("light_mode.json")
         TrackBar.init(trackBarContent, trackBarScrollPane, toolBar)
-        Editor.init(stackPane)
         SplineGraphEditor.init(editorTopSide)
+        Editor.init(editorStackPane)
+        KeyboardEditor.init(keyboardScrollPane)
         InteractBin.connect()
+        init()
+    }
+
+    private fun init() {
+        editorScrollPane.vvalueProperty().bind(keyboardScrollPane.vvalueProperty())
     }
 }

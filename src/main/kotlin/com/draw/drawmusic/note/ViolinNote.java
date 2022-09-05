@@ -12,7 +12,7 @@ public class ViolinNote extends PlayableNote {
         return null;
     }
     @Override
-    public Rectangle toShape(NoteSelect isSelected) {
+    public Rectangle toShape() {
         return null;
     }
 }

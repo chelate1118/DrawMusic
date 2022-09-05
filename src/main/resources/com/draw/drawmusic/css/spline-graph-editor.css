@@ -1,10 +1,15 @@
 
 .titled-pane > .title {
     -fx-background-color: #1A1A1A;
+    -fx-background-radius: 0;
 }
 
 .titled-pane > .title > .arrow-button .arrow {
     -fx-background-color: gray;
+}
+
+.titled-pane > .title > .arrow-button {
+    -fx-focus-color: transparent;
 }
 
 .titled-pane > *.content {
@@ -30,5 +35,6 @@
 }
 
 .chart-vertical-grid-lines {
-
+    -fx-stroke: #3278fa;
+    -fx-stroke-dash-array: null;
 }

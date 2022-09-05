@@ -12,7 +12,7 @@ public class Play {
         InteractBin.sendCommand("s p\n" + note.ID + "\n");
     }
 
-    public static void playList(ArrayList<PlayableNote> notes) throws IOException {
+    public static void playAll(ArrayList<PlayableNote> notes) throws IOException {
         Collections.sort(notes);
 
         new Thread(() -> {

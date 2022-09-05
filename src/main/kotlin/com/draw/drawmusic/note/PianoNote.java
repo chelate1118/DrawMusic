@@ -13,8 +13,8 @@ public class PianoNote extends PlayableNote {
     }
 
     @Override
-    public Rectangle toShape(NoteSelect isSelected) {
-        Rectangle ret = super.toShape(isSelected);
+    public Rectangle toShape() {
+        Rectangle ret = super.toShape();
         if(noteSelect == NoteSelect.Invisible) return null;
         return ret;
     }

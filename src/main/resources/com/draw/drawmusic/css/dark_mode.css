@@ -40,6 +40,7 @@
 .tool-bar {
     -fx-background-color: #5A5A5A;
     -fx-border-color: #303030;
+    -fx-border-width: 0 0 2 0;
 }
 
 .track-bar, .scroll-bar {
@@ -50,10 +51,6 @@
     -fx-cursor: e-resize;
 }
 
-.debug {
-    -fx-background-color: red;
-}
-
 .label {
     -fx-font-family: Ubuntu;
     -fx-text-fill: white;
@@ -62,7 +59,19 @@
 
 .scroll-pane {
     -fx-background-color: transparent;
-    -fx-border-color: #303030;
+    -fx-border-width: 0;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical {
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .increment-button,
@@ -84,4 +93,3 @@
 .scroll-bar .thumb:hover {
     -fx-background-color: #FFFFFF50;
 }
-

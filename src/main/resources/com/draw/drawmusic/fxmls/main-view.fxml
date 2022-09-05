@@ -38,11 +38,11 @@
         </MenuBar>
     </top>
    <left>
-      <BorderPane>
+      <BorderPane styleClass="track-bar">
          <center>
             <ScrollPane fx:id="trackBarScrollPane" prefWidth="420.0">
                <content>
-                  <VBox fx:id="trackBarContent" style="-fx-padding: 5 0 110 0;" styleClass="track-bar" />
+                  <VBox fx:id="trackBarContent" style="-fx-padding: 5 0 110 0;"  />
                </content>
             </ScrollPane>
          </center>
@@ -66,11 +66,18 @@
    <center>
       <BorderPane>
          <center>
-            <StackPane fx:id="stackPane" prefHeight="502.0" prefWidth="601.0" />
+            <ScrollPane fx:id="editorScrollPane">
+               <content>
+                  <StackPane fx:id="editorStackPane" prefHeight="502.0" prefWidth="601.0" />
+               </content>
+            </ScrollPane>
          </center>
          <top>
-            <VBox fx:id="editorTopSide"/>
+            <VBox fx:id="editorTopSide" />
          </top>
+         <left>
+            <ScrollPane fx:id="keyboardScrollPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER"/>
+         </left>
       </BorderPane>
    </center>
 </BorderPane>

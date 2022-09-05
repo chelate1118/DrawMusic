@@ -19,9 +19,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * Every field and method are static
- */
 public class TrackBar {
     public static final int TRACK_MAX_NUMBER = 50;
     private static ToolBar toolBar;
