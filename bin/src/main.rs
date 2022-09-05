@@ -1,13 +1,9 @@
-mod sound;
-
 use sound::Sound;
+use interact::input;
 
-fn input() -> String {
-    let mut tmp: String = String::new();
-    std::io::stdin().read_line(&mut tmp).ok();
-
-    tmp.trim().to_string()
-}
+mod sound;
+mod calculator;
+mod interact;
 
 fn main() {
     Sound::reset();

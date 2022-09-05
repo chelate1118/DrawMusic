@@ -1,7 +1,5 @@
 #![allow(unused)]
 
-mod calculator;
-
 use std::thread;
 use std::fs::File;
 use std::fs;
@@ -11,14 +9,8 @@ use rodio::{Decoder, OutputStream, source::Source};
 use std::f32::consts::PI;
 use std::fmt::Debug;
 use std::str::FromStr;
-use crate::sound::calculator::Spline;
-
-fn split_two_commands<Type1: FromStr, Type2: FromStr>(command: String) -> (Type1, Type2)
-    where <Type1 as FromStr>::Err: Debug, <Type2 as FromStr>::Err: Debug
-{
-    let tmp: Option<(&str, &str)> = command.split_once(' ');
-    (FromStr::from_str(tmp.unwrap().0).unwrap(), FromStr::from_str(tmp.unwrap().1).unwrap())
-}
+use crate::calculator::Spline;
+use crate::interact::{split_two_commands_whitespace};
 
 pub(crate) struct Sound {
     amp: Spline
@@ -28,7 +20,7 @@ impl Sound {
     const PATH: &'static str = "src/main/resources/com/draw/drawmusic/sound_rust/";
 
     pub(crate) fn generate(command: String) {
-        let (file_name, frequency) = split_two_commands::<String, f64>(command);
+        let (file_name, frequency) = split_two_commands_whitespace::<String, f64>(command);
         let file_name: String = format!("{}{}", Sound::PATH, file_name);
         let spec = hound::WavSpec {
             channels: 1,
@@ -44,7 +36,7 @@ impl Sound {
     }
 
     pub(crate) fn play(command: String) {
-        let(file_name, millis) = split_two_commands::<String, u64>(command);
+        let(file_name, millis) = split_two_commands_whitespace::<String, u64>(command);
         Sound::play_with_time(file_name, millis)
     }
 
