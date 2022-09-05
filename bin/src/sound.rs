@@ -9,11 +9,11 @@ use rodio::{Decoder, OutputStream, source::Source};
 use std::f32::consts::PI;
 use std::fmt::Debug;
 use std::str::FromStr;
-use crate::calculator::Spline;
+use crate::calculator;
 use crate::interact::{split_two_commands_whitespace};
 
 pub(crate) struct Sound {
-    amp: Spline
+    amp: calculator::Spline
 }
 
 impl Sound {

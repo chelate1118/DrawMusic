@@ -1,36 +1,20 @@
 #![allow(unused)]
 
-use num_bigint::BigInt;
-use num_traits::{Num, Zero, One};
+pub(crate) struct Sigmoid {}
 
-pub(crate) fn sum(command: String) {
-    let mut ans: BigInt = BigInt::zero();
-    for i in command.split_whitespace() {
-        match BigInt::from_str_radix(i, 10) {
-            Ok(val) => { ans += val; }
-            Err(_) => {
-                println!("Error");
-                return;
-            }
+impl Sigmoid {
+    pub(crate) fn value(x: f64) -> f64 {
+        1.0f64 / (1.0f64 + (-x).exp())
+    }
+
+    pub(crate) fn inverse(y: f64) -> Option<f64> {
+        if y >= 1f64 || y <= 0f64 {
+            None
+        } else {
+            Some((y / (1.0 - y)).ln())
         }
     }
-    println!("{}", ans.to_string());
 }
-
-pub(crate) fn multiple(command: String) {
-    let mut ans: BigInt = BigInt::one();
-    for i in command.split_whitespace() {
-        match BigInt::from_str_radix(i, 10) {
-            Ok(val) => { ans *= val; }
-            Err(_) => {
-                println!("Error");
-                break;
-            }
-        }
-    }
-    println!("{}", ans.to_string());
-}
-
 
 pub(crate) struct Polynomial {
     val: Vec<f64>,
@@ -42,7 +26,7 @@ impl Polynomial {
 
         let sp = x.split('$');
         for i in sp {
-            ret.val.push(i.parse::<f64>().unwrap());
+            ret.val.push(i.trim().parse::<f64>().unwrap());
         }
 
         ret
@@ -96,4 +80,52 @@ impl Spline {
             None => None
         }
     }
+}
+
+use assert_approx_eq::assert_approx_eq;
+
+#[test]
+fn test_sigmoid_value()
+{
+    assert_approx_eq!(0.5f64, Sigmoid::value(0f64));
+    assert_approx_eq!(1.0f64, Sigmoid::value(f64::MAX));
+    assert_approx_eq!(0.0f64, Sigmoid::value(f64::MIN));
+    assert_approx_eq!(0.880797077977882444059729141302396795, Sigmoid::value(2f64));
+    assert_approx_eq!(0.047425873177566780878848151771752201, Sigmoid::value(-3f64));
+}
+
+#[test]
+fn test_sigmoid_inverse()
+{
+    assert_approx_eq!(0f64, Sigmoid::inverse(0.5f64).unwrap());
+    assert_eq!(None, Sigmoid::inverse(1.0f64));
+    assert_eq!(None, Sigmoid::inverse(0.0f64));
+    assert_eq!(None, Sigmoid::inverse(-0.5f64));
+    assert_approx_eq!(2f64,  Sigmoid::inverse(0.880797077977882444059729141302396795).unwrap());
+    assert_approx_eq!(-3f64, Sigmoid::inverse(0.047425873177566780878848151771752201).unwrap());
+}
+
+#[test]
+fn test_polynomial_from_string()
+{
+    let command = String::from("\n0.46$3.2 $1.0\n");
+    let polynomial = Polynomial::from_string(command);
+
+    assert_eq!(polynomial.val, vec![0.46, 3.2, 1.0f64]);
+}
+
+#[test]
+fn test_polynomial_value()
+{
+    let polynomial = Polynomial{ val : vec![140.0, 0.0, -90.7, 3.78] };
+
+    assert_eq!(3.78f64, polynomial.value(0f64));
+    assert_eq!(53.08f64, polynomial.value(1f64));
+}
+
+#[test]
+fn test_spline_from_string()
+{
+    let spline = Spline::from_string(String::from(""));
+    // TODO : Make Spline string format
 }
