@@ -1,19 +1,9 @@
 #![allow(unused)]
 
-pub(crate) struct Sigmoid {}
+mod sigmoid;
 
-impl Sigmoid {
-    pub(crate) fn value(x: f64) -> f64 {
-        1.0f64 / (1.0f64 + (-x).exp())
-    }
-
-    pub(crate) fn inverse(y: f64) -> Option<f64> {
-        if y >= 1f64 || y <= 0f64 {
-            None
-        } else {
-            Some((y / (1.0 - y)).ln())
-        }
-    }
+pub(crate) struct Exponential {
+    coefficient: f64
 }
 
 pub(crate) struct Polynomial {
@@ -82,7 +72,10 @@ impl Spline {
     }
 }
 
+/// Test Code
+
 use assert_approx_eq::assert_approx_eq;
+use sigmoid::Sigmoid;
 
 #[test]
 fn test_sigmoid_value()

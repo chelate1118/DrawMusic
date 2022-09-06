@@ -1,5 +1,7 @@
 use sound::Sound;
 use interact::input;
+use crate::interact::logging;
+use chrono;
 
 mod sound;
 mod calculator;
@@ -7,6 +9,7 @@ mod interact;
 
 fn main() {
     Sound::reset();
+    logging("start", format!("{}", chrono::offset::Local::now()));
 
     loop {
         match input().trim() {
