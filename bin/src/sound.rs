@@ -13,7 +13,7 @@ use crate::calculator;
 use crate::interact::{split_two_commands_whitespace};
 
 pub(crate) struct Sound {
-    amp: calculator::Spline
+    // amp: calculator::Spline
 }
 
 impl Sound {

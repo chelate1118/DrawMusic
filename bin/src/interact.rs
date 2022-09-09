@@ -21,6 +21,10 @@ pub(crate) fn input() -> String {
     ret
 }
 
+pub(crate) fn error() {
+    logging("error", String::new());
+}
+
 pub(crate) fn logging(log_type: &str, data: String) {
     const PATH: &str = "./bin/src/log";
     let mut file: File = OpenOptions::new()

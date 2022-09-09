@@ -1,18 +1,12 @@
 [package]
-name = "bin"
+name = "linux"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[dependencies]
+jni = "0.19.0"
+
 [lib]
 crate-type = ["cdylib"]
-
-[dependencies]
-num-bigint = "0.4"
-num-traits = "0.2.15"
-rodio = "0.15.0"
-hound = "3.4.0"
-assert_approx_eq = "1.1.0"
-chrono = "0.4.22"
-jni = "0.19.0"

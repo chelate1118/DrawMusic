@@ -52,6 +52,7 @@ dependencies = [
  "assert_approx_eq",
  "chrono",
  "hound",
+ "jni",
  "num-bigint",
  "num-traits",
  "rodio",

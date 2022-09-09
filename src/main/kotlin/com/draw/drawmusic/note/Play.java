@@ -1,6 +1,5 @@
 package com.draw.drawmusic.note;
 
-import com.draw.drawmusic.tools.InteractBin;
 import com.draw.drawmusic.note_properties.Ticks;
 
 import java.io.IOException;
@@ -9,7 +8,7 @@ import java.util.Collections;
 
 public class Play {
     public static void playOne(PlayableNote note) throws IOException {
-        InteractBin.sendCommand("s p\n" + note.ID + "\n");
+        play(note.ID);
     }
 
     public static void playAll(ArrayList<PlayableNote> notes) throws IOException {
@@ -29,4 +28,6 @@ public class Play {
             }
         }).start();
     }
+
+    public static native void play(int ID);
 }

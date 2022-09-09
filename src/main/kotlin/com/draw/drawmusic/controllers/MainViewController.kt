@@ -3,7 +3,6 @@ package com.draw.drawmusic.controllers
 import com.draw.drawmusic.editor.Editor
 import com.draw.drawmusic.editor.KeyboardEditor
 import com.draw.drawmusic.editor.SplineGraphEditor
-import com.draw.drawmusic.tools.InteractBin
 import com.draw.drawmusic.track.TrackBar
 import com.draw.drawmusic.track_properties.Palette
 import javafx.fxml.FXML
@@ -32,7 +31,6 @@ class MainViewController : Initializable {
         SplineGraphEditor.init(editorTopSide)
         Editor.init(editorStackPane)
         KeyboardEditor.init(keyboardScrollPane)
-        InteractBin.connect()
         init()
     }
 
