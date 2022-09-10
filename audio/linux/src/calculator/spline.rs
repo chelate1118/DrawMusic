@@ -1,4 +1,3 @@
-
 use crate::calculator::polynomial::Polynomial;
 use crate::calculator::Graph;
 

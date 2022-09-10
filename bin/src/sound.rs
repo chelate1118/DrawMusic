@@ -17,7 +17,7 @@ pub(crate) struct Sound {
 }
 
 impl Sound {
-    const PATH: &'static str = "src/main/resources/com/draw/drawmusic/sound_rust/";
+    const PATH: &'static str = "src/main/generated/com/draw/drawmusic/sound_rust/";
 
     pub(crate) fn generate(command: String) {
         let (file_name, frequency) = split_two_commands_whitespace::<String, f64>(command);

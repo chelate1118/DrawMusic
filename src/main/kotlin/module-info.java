@@ -23,4 +23,5 @@ module com.draw.drawmusic {
     exports com.draw.drawmusic.note_properties;
     exports com.draw.drawmusic.editor;
     exports com.draw.drawmusic.history;
+    exports com.draw.drawmusic.rust;
 }
