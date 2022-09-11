@@ -62,7 +62,7 @@ public class TrackBar {
         syncOrderInDisplay();
         selectElements(newElement, false, false);
         displayAndUpdateElements();
-        fadeElement(newElement);
+        fadeInElement(newElement);
         scrollDownPossible();
         setDisplayTrackNumbers();
     }
@@ -160,7 +160,7 @@ public class TrackBar {
         }
     }
 
-    private static void fadeElement(@NotNull Track node) {
+    private static void fadeInElement(@NotNull Track node) {
         FadeTransition ft = new FadeTransition(Duration.millis(500), node.trackElement.getGridPane());
         ft.setFromValue(0);
         ft.setToValue(1);
