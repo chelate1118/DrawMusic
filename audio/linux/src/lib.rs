@@ -1,11 +1,12 @@
+extern crate core;
+
 mod controller;
 mod calculator;
+mod jni_tools;
 
 use jni::sys::{jclass, jint, jintArray};
 use jni::JNIEnv;
 use controller::init;
-
-const ARRAY_SIZ: usize = 100;
 
 #[no_mangle]
 pub extern fn Java_com_draw_drawmusic_rust_Rust_init(_env: JNIEnv, _class: jclass) {
@@ -15,10 +16,8 @@ pub extern fn Java_com_draw_drawmusic_rust_Rust_init(_env: JNIEnv, _class: jclas
 #[no_mangle]
 pub extern fn Java_com_draw_drawmusic_rust_Rust_xx(env: JNIEnv, _class: jclass, arr: jintArray) -> jint {
     println!("called!");
-    let x = &mut [0; ARRAY_SIZ];
-    env.get_int_array_region(arr, 0, x).unwrap();
-
-    let mut ret = 0;
+    let x = jni_tools::jint_array_to_vec(env, arr);
+    let mut ret: i32 = 0;
 
     for i in 0..env.get_array_length(arr).unwrap() {
         ret += x[i as usize];
