@@ -3,6 +3,7 @@ package com.draw.drawmusic.controllers
 import com.draw.drawmusic.editor.Editor
 import com.draw.drawmusic.editor.KeyboardEditor
 import com.draw.drawmusic.editor.SplineGraphEditor
+import com.draw.drawmusic.rust.Rust
 import com.draw.drawmusic.track.TrackBar
 import com.draw.drawmusic.track_properties.Palette
 import javafx.fxml.FXML
@@ -29,12 +30,8 @@ class MainViewController : Initializable {
         Palette.init("light_mode.json")
         TrackBar.init(trackBarContent, trackBarScrollPane, toolBar)
         SplineGraphEditor.init(editorTopSide)
+        KeyboardEditor.init(keyboardScrollPane, editorScrollPane)
         Editor.init(editorStackPane)
-        KeyboardEditor.init(keyboardScrollPane)
-        init()
-    }
-
-    private fun init() {
-        editorScrollPane.vvalueProperty().bind(keyboardScrollPane.vvalueProperty())
+        Rust.init()
     }
 }

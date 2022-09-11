@@ -31,7 +31,7 @@ public class MidiTrackController extends TrackController implements Initializabl
         TrackBar.addElement(parent);
     }
 
-    private void connectToParent() {
+    protected void connectToParent() {
         parent = new MIDITrack(this, TrackSelect.unSelected, Palette.next(), TrackBar.makeLastOrder());
         super.parent = parent;
     }

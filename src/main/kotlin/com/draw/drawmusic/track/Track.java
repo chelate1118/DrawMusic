@@ -14,12 +14,11 @@ public abstract class Track implements Comparable<Track>{
     public int ID;
     public Order orderInTrackBar;
 
-    protected Track(TrackController trackElement, TrackSelect trackSelect, Palette palette, Editor editor, Order orderInTrackBar) {
+    protected Track(TrackController trackElement, TrackSelect trackSelect, Palette palette, Order orderInTrackBar) {
         this.ID = NEXT_ID++;
         this.trackElement = trackElement;
         this.trackSelect = trackSelect;
         this.palette = palette;
-        this.editor = editor;
         this.orderInTrackBar = orderInTrackBar;
     }
 

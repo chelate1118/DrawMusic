@@ -22,6 +22,8 @@ public abstract class TrackController {
 
     protected abstract void updateShape();
 
+    protected abstract void connectToParent();
+
     protected void makeColorCircle()  {
         final double BRIGHTER = 3.0;
         colorCircle.setStroke(parent.palette.color());

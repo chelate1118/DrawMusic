@@ -1,6 +1,8 @@
 package com.draw.drawmusic.note;
 
+import com.draw.drawmusic.note_properties.MidiNote;
 import com.draw.drawmusic.track.Track;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
@@ -19,9 +21,15 @@ public abstract class PlayableNote extends MusicNote{
         Play.playOne(this);
     }
 
+    static int cnt = 0;
+
     @Override
     public Rectangle toShape() {
-        Rectangle rect = super.toShape();
+        pitch = MidiNote.MAX_PITCH - 2;
+
+        Rectangle rect = new Rectangle(0, MidiNote.pitchToY(MidiNote.MAX_PITCH - cnt), 100, MidiNote.getNoteHeight(MidiNote.MAX_PITCH - cnt));
+        cnt++;
+        rect.setStroke(Color.BLACK);
         rect.setFill(parent.palette.color());
 
         return rect;

@@ -20,7 +20,6 @@ public class Play {
             for(i = 0; i < siz - 1; i++) {
                 try {
                     Thread.sleep(0);
-                    current = notes.get(i).timeOn;
                     playOne(notes.get(i));
                 } catch (InterruptedException | IOException e) {
                     throw new RuntimeException(e);

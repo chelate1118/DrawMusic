@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public abstract class ShapeNote extends MusicNote{
+    protected static final double NOTE_WIDTH = 150;
     public static ShapeNote fromPitch(int pitch) {
         if (MidiNote.isWhiteKey(pitch)) {
             return new WhiteKey(pitch);
@@ -16,11 +17,15 @@ public abstract class ShapeNote extends MusicNote{
     @Override
     public Rectangle toShape() {
         Rectangle rect = new Rectangle();
+        final double STROKE_WIDTH = 2.5;
+        final double ARC_RADIUS = 10.0;
+
         rect.setStroke(Color.BLACK);
-        rect.setY(MidiNote.pitchToY(pitch));
-        rect.setStrokeWidth(3.0);
-        rect.setArcHeight(10);
-        rect.setArcWidth(10);
+        rect.setY(MidiNote.pitchToMiddleY(pitch));
+        rect.setStrokeWidth(STROKE_WIDTH);
+        rect.setArcHeight(ARC_RADIUS);
+        rect.setArcWidth(ARC_RADIUS);
+
         return rect;
     }
 }

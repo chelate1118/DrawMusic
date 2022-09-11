@@ -1,7 +1,6 @@
 package com.draw.drawmusic
 
 import com.draw.drawmusic.history.Behaviors
-import com.draw.drawmusic.rust.Rust
 import com.draw.drawmusic.track.TrackBar
 import javafx.application.Application
 import javafx.fxml.FXMLLoader
@@ -74,8 +73,5 @@ class MainApplicationManager : Application() {
 }
 
 fun main() {
-    println("???")
-    println(Rust.x(intArrayOf(10, 20, 30)))
-    Rust.init()
     Application.launch(MainApplicationManager::class.java)
 }
