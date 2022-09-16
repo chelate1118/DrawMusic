@@ -1,12 +1,14 @@
-use jni::JNIEnv;
-use jni::sys::{jintArray};
+#![allow(dead_code)]
 
-pub(super) fn jint_array_to_vec(env: JNIEnv, array: jintArray) -> Vec<i32> {
-    let mut ret: Vec<i32> = Vec::new();
+use jni::JNIEnv;
+use jni::sys::jfloatArray;
+
+pub(super) fn jint_array_to_vec_i32(env: JNIEnv, array: jfloatArray) -> Vec<f32> {
+    let mut ret: Vec<f32> = Vec::new();
     let length: usize = env.get_array_length(array).unwrap() as usize;
 
-    ret.resize(length, 0);
-    env.get_int_array_region(array, 0, &mut ret).unwrap();
+    ret.resize(length, 0.0);
+    env.get_float_array_region(array, 0, &mut ret).unwrap();
 
     ret
 }

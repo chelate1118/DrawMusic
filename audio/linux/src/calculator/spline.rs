@@ -1,8 +1,8 @@
-use crate::calculator::polynomial::Polynomial;
-use crate::calculator::Graph;
+use crate::calculator::polynomial::CubicFunction;
+use crate::calculator::{Graph, ParseError};
 
 pub(crate) struct Spline {
-    val: Vec<(f64, f64, Polynomial)>,
+    val: Vec<(f32, f32, CubicFunction)>,
 }
 
 impl Graph for Spline {
@@ -13,22 +13,33 @@ impl Graph for Spline {
         for i in sp {
             let tmp = i.split_whitespace().collect::<Vec<&str>>();
             ret.val.push((tmp[0].parse().unwrap(), tmp[1].parse().unwrap(),
-                          Polynomial::from_string(tmp[2].to_string()).unwrap()));
+                          CubicFunction::from_string(tmp[2].to_string()).unwrap()));
         }
 
         Some(ret)
     }
 
-    fn value(&self, x: f64) -> Option<f64> {
-        match self.find(x) {
-            Some(i) => Some(self.val[i].2.value(x).unwrap()),
-            None => None
+    fn from_vec_f32(x: Vec<f32>) -> Result<Self, ParseError> {
+        if x.len() % 6 != 0 {
+            return Result::Err(ParseError)
         }
+
+        let mut ret = Spline { val: Vec::new() };
+
+        while !x.is_empty() {
+            ret.val.push((x[0], x[1], CubicFunction::from_vec_f32(Vec::from(&x[0..6])).unwrap()))
+        }
+
+        Result::Err(ParseError)
+    }
+
+    fn value(&self, x: f32) -> Option<f32> {
+        self.find(x).map(|i| self.val[i].2.value(x).unwrap())
     }
 }
 
 impl Spline {
-    fn find(&self, x: f64) -> Option<usize> {
+    fn find(&self, x: f32) -> Option<usize> {
         if x < self.val[0].0 {
             return None;
         }

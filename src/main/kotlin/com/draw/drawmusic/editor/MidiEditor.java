@@ -1,6 +1,5 @@
 package com.draw.drawmusic.editor;
 
-import com.draw.drawmusic.note.PianoNote;
 import com.draw.drawmusic.note.PlayableNote;
 import com.draw.drawmusic.note_properties.Bars;
 import com.draw.drawmusic.track.Track;
@@ -18,7 +17,7 @@ public class MidiEditor extends Editor {
 
     @Override
     public void updateShape() {
-        noteArrayList.add(new PianoNote(parent));
+//        noteArrayList.add(new PianoNote(parent));
         group.getChildren().clear();
         for(PlayableNote i : noteArrayList) {
             group.getChildren().add(i.toShape());

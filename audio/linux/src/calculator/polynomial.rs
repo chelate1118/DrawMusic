@@ -1,17 +1,17 @@
 
-use crate::calculator::Graph;
+use crate::calculator::{Graph, ParseError};
 
-pub(super) struct Polynomial {
-    pub(super) val: Vec<f64>,
+pub(super) struct CubicFunction {
+    pub(super) val: Vec<f32>,
 }
 
-impl Graph for Polynomial {
+impl Graph for CubicFunction {
     fn from_string(x: String) -> Option<Self> {
-        let mut ret = Polynomial { val: Vec::new() };
+        let mut ret = CubicFunction { val: Vec::new() };
 
         let sp = x.split('$');
         for i in sp {
-            match i.trim().parse::<f64>() {
+            match i.trim().parse::<f32>() {
                 Err(_) => { return None; }
                 Ok(coefficient) => {
                     ret.val.push(coefficient);
@@ -22,8 +22,18 @@ impl Graph for Polynomial {
         Some(ret)
     }
 
-    fn value(&self, x: f64) -> Option<f64> {
-        let mut ans = 0f64;
+    fn from_vec_f32(x: Vec<f32>) -> Result<Self, ParseError> {
+        if x.len() != 4 {
+            return Result::Err(ParseError);
+        }
+
+        Result::Ok(CubicFunction {
+            val: x
+        })
+    }
+
+    fn value(&self, x: f32) -> Option<f32> {
+        let mut ans = 0f32;
 
         for i in self.val.iter() {
             ans *= x;

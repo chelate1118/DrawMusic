@@ -59,7 +59,6 @@ public class TrackBar {
 
     public static void addElement(Track newElement) {
         trackElements.add(newElement);
-        syncOrderInDisplay();
         selectElements(newElement, false, false);
         displayAndUpdateElements();
         fadeInElement(newElement);
