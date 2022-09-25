@@ -36,6 +36,7 @@ public class KeyboardEditor {
             double keyboardMax = keyboardScrollPane.getVmax();
             editorScrollPane.setVvalue(nv.doubleValue() / keyboardMax);
         });
+//        editorScrollPane.setFitToWidth(true);
     }
 
     private static void hideScrollbar() {

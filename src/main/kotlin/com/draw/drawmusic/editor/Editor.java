@@ -38,12 +38,8 @@ public abstract class Editor implements Comparable<Editor>{
 
     public abstract void updateShape();
 
-    public void setParent(Track parent) {
-        this.parent = parent;
-    }
-
     @Override
     public int compareTo(Editor o) {
-        return parent.trackSelect.compareTo(o.parent.trackSelect);
+        return parent.getTrackSelect().compareTo(o.parent.getTrackSelect());
     }
 }

@@ -7,7 +7,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 
-public abstract class PlayableNote extends MusicNote{
+public abstract class PlayableNote extends MusicNote {
     public int ID;
     protected Track parent;
     protected NoteSelect noteSelect;
@@ -21,16 +21,13 @@ public abstract class PlayableNote extends MusicNote{
         Play.playOne(this);
     }
 
-    static int cnt = 0;
-
     @Override
     public Rectangle toShape() {
         pitch = MidiNote.MAX_PITCH - 2;
 
-        Rectangle rect = new Rectangle(0, MidiNote.pitchToY(MidiNote.MAX_PITCH - cnt), 100, MidiNote.getNoteHeight(MidiNote.MAX_PITCH - cnt));
-        cnt++;
+        Rectangle rect = new Rectangle(timeOn, MidiNote.pitchToY(pitch), timeOff, MidiNote.getNoteHeight(pitch));
         rect.setStroke(Color.BLACK);
-        rect.setFill(parent.palette.color());
+        rect.setFill(parent.getPalette().color());
 
         return rect;
     }

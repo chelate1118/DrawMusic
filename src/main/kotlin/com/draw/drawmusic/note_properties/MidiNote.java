@@ -6,6 +6,13 @@ public class MidiNote {
     public static final int MIN_PITCH = 21;
     public static final int MAX_PITCH = 108;
 
+    public static int YToPitch(double Y) {
+        for(int i = MIN_PITCH; i < MAX_PITCH; i++){
+            if(Y >= pitchToY(i + 1) && Y <= pitchToY(i)) return i;
+        }
+        return 0;
+    }
+
     public static double pitchToMiddleY(int pitch) {
         int i = (108 - pitch) / 12;
         int j = (108 - pitch) % 12;

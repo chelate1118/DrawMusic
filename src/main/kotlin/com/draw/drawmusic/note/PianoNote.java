@@ -4,8 +4,12 @@ import com.draw.drawmusic.track.Track;
 import javafx.scene.shape.Rectangle;
 
 public class PianoNote extends PlayableNote {
-    public PianoNote(Track _parent) {
+
+    public PianoNote(Track _parent, double _timeOn, double _timeOff, int _pitch) {
         super(_parent);
+        timeOn = _timeOn;
+        timeOff = _timeOff;
+        pitch = _pitch;
     }
 
     public ViolinNote toViolinNote() {
@@ -14,8 +18,6 @@ public class PianoNote extends PlayableNote {
 
     @Override
     public Rectangle toShape() {
-        Rectangle ret = super.toShape();
-        if(noteSelect == NoteSelect.Invisible) return null;
-        return ret;
+        return super.toShape();
     }
 }

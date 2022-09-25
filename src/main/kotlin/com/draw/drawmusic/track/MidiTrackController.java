@@ -32,7 +32,7 @@ public class MidiTrackController extends TrackController implements Initializabl
     }
 
     protected void connectToParent() {
-        parent = new MIDITrack(this, TrackSelect.unSelected, Palette.next(), TrackBar.makeLastOrder());
+        parent = new MIDITrack(this, TrackSelect.UnSelected, Palette.next(), TrackBar.makeLastOrder());
         super.parent = parent;
     }
 
@@ -53,7 +53,7 @@ public class MidiTrackController extends TrackController implements Initializabl
 
         chooseInstrument.setBackground(new Background(new BackgroundFill(Color.hsb(0, 0, 0, ALPHA),
                 new CornerRadii(2.0), Insets.EMPTY)));
-        chooseInstrument.setText(parent.instrument.getName());
+        chooseInstrument.setText(parent.getInstrument().getName());
 
         for(Instrument _instrument : Instrument.getInstrumentList()) {
             chooseInstrument.getItems().add(makeMenuItem(_instrument));
@@ -71,7 +71,7 @@ public class MidiTrackController extends TrackController implements Initializabl
     private MenuItem makeMenuItem(@NotNull Instrument _instrument) {
         MenuItem menuItem = new MenuItem(_instrument.getName());
         menuItem.setOnAction(actionEvent -> {
-            parent.instrument = _instrument;
+            parent.setInstrument(_instrument);
             chooseInstrument.setText(_instrument.getName());
         });
         return menuItem;

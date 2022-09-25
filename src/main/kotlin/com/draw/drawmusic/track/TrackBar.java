@@ -104,11 +104,11 @@ public class TrackBar {
 
     public static Order makeLastOrder() {
         if(trackElements.isEmpty()) return Order.DEFAULT;
-        return Order.nextOrderThan(ArrayTool.last(trackElements).orderInTrackBar);
+        return Order.nextOrderThan(ArrayTool.last(trackElements).getOrderInTrackBar());
     }
 
     private static void switchTwoTracks(Track a, Track b) {
-        Order.swap(a.orderInTrackBar, b.orderInTrackBar);
+        Order.swap(a.getOrderInTrackBar(), b.getOrderInTrackBar());
         syncOrderInDisplay();
         displayElements();
     }
@@ -135,7 +135,7 @@ public class TrackBar {
     private static ArrayList<Track> getSelectedList() {
         final ArrayList<Track> selected = new ArrayList<>();
         for(Track element : trackElements) {
-            if(element.trackSelect != TrackSelect.unSelected) {
+            if(element.getTrackSelect() != TrackSelect.UnSelected) {
                 selected.add(element);
             }
         }
@@ -149,18 +149,18 @@ public class TrackBar {
     private static void displayElements() {
         contentBar.getChildren().clear();
         for (Track element: trackElements) {
-            contentBar.getChildren().add(element.trackElement.getGridPane());
+            contentBar.getChildren().add(element.getTrackElement().getGridPane());
         }
     }
 
     private static void updateElements() {
         for (Track element: trackElements) {
-            element.trackElement.updateShape();
+            element.getTrackElement().updateShape();
         }
     }
 
     private static void fadeInElement(@NotNull Track node) {
-        FadeTransition ft = new FadeTransition(Duration.millis(500), node.trackElement.getGridPane());
+        FadeTransition ft = new FadeTransition(Duration.millis(500), node.getTrackElement().getGridPane());
         ft.setFromValue(0);
         ft.setToValue(1);
         ft.play();
@@ -175,35 +175,35 @@ public class TrackBar {
             int index = trackElements.indexOf(element), siz = trackElements.size();
             int start = -1;
             for(int i = 0; i < siz; i++) {
-                if(trackElements.get(i).trackSelect == TrackSelect.currentSelected) {
+                if(trackElements.get(i).getTrackSelect() == TrackSelect.CurrentSelected) {
                     start = i;
                 }
             }
             if(start == -1) {
-                element.trackSelect = TrackSelect.currentSelected;
+                element.setTrackSelect(TrackSelect.CurrentSelected);
             } else {
                 for(Track _element : trackElements)
-                    _element.trackSelect = TrackSelect.unSelected;
+                    _element.setTrackSelect(TrackSelect.UnSelected);
                 for(int i = Integer.min(index, start); i <= Integer.max(index, start); i++) {
-                    if(i == start) trackElements.get(i).trackSelect = TrackSelect.currentSelected;
-                    else trackElements.get(i).trackSelect = TrackSelect.multiSelected;
+                    if(i == start) trackElements.get(i).setTrackSelect(TrackSelect.CurrentSelected);
+                    else trackElements.get(i).setTrackSelect(TrackSelect.MultiSelected);
                 }
             }
         } else if (ctrlClicked) {
-            if(element.trackSelect != TrackSelect.unSelected) {
-                element.trackSelect = TrackSelect.unSelected;
+            if(element.getTrackSelect() != TrackSelect.UnSelected) {
+                element.setTrackSelect(TrackSelect.UnSelected);
             } else {
                 for (Track _element : trackElements) {
-                    if (_element.trackSelect == TrackSelect.currentSelected)
-                        _element.trackSelect = TrackSelect.multiSelected;
+                    if (_element.getTrackSelect() == TrackSelect.CurrentSelected)
+                        _element.setTrackSelect(TrackSelect.MultiSelected);
                 }
-                element.trackSelect = TrackSelect.currentSelected;
+                element.setTrackSelect(TrackSelect.CurrentSelected);
             }
         } else {
             for (Track _element : trackElements) {
-                _element.trackSelect = TrackSelect.unSelected;
+                _element.setTrackSelect(TrackSelect.UnSelected);
             }
-            element.trackSelect = TrackSelect.currentSelected;
+            element.setTrackSelect(TrackSelect.CurrentSelected);
         }
     }
 }
