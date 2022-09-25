@@ -22,7 +22,7 @@ abstract class TrackController {
 
         private const val BORDER = 3.0
 
-        private const val UNDERLINE = 1.5
+        private const val UNDERLINE_WIDTH = 1.5
     }
 
     @FXML lateinit var colorCircle: Circle
@@ -73,7 +73,7 @@ abstract class TrackController {
                 parent.palette.darkColor(DARKER2),
                 BorderStrokeStyle.SOLID,
                 CornerRadii.EMPTY,
-                BorderWidths(0.0, 0.0, UNDERLINE, 0.0)
+                BorderWidths(0.0, 0.0, UNDERLINE_WIDTH, 0.0)
             )
         )
     }
