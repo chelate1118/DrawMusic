@@ -18,13 +18,4 @@ public class Instrument {
 
     public String getName() { return instrumentName.get(index); }
     public static ArrayList<Instrument> getInstrumentList() { return instrumentList; }
-
-    /*public PlayNote makeNote(Track parent) {
-        switch(index) {
-            case 1:
-                return new PianoNote(parent);
-            default:
-                return new ViolinNote(parent);
-        }
-    }*/
 }

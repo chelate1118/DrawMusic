@@ -33,7 +33,6 @@ public class MidiTrackController extends TrackController implements Initializabl
 
     protected void connectToParent() {
         parent = new MIDITrack(this, TrackSelect.UnSelected, Palette.next(), TrackBar.makeLastOrder());
-        super.parent = parent;
     }
 
     private void makeShape() {
@@ -75,5 +74,11 @@ public class MidiTrackController extends TrackController implements Initializabl
             chooseInstrument.setText(_instrument.getName());
         });
         return menuItem;
+    }
+
+    @NotNull
+    @Override
+    protected MIDITrack getParent() {
+        return parent;
     }
 }

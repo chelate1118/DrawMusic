@@ -8,5 +8,6 @@ public class Rust {
     static {
         System.load(new File("audio" + PATH).getAbsolutePath());
     }
+
     public static native void init();
 }
