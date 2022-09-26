@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 <GridPane fx:id="gridPane" stylesheets="@../css/track-element.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.draw.drawmusic.track.MidiTrackController">
   <columnConstraints>
     <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="54.0" />
@@ -54,9 +55,7 @@
               <Tooltip text="Delete (ctrl+delete)" />
           </tooltip>
           <graphic>
-              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../images/trash.png" />
-              </ImageView>
+              <FontIcon iconLiteral="cil-trash" iconSize="20" iconColor="darkred"/>
           </graphic>
       </Button>
       <Button mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="button-in-trackbar" onAction="#moveUp">

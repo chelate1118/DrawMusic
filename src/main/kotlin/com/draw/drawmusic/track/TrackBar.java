@@ -19,6 +19,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 
+//TODO: 트랙 삭제 후 ctrl-z 하면 에러
+
 public class TrackBar {
     public static final int TRACK_MAX_NUMBER = 50;
     private static ToolBar toolBar;
@@ -62,8 +64,13 @@ public class TrackBar {
         selectElements(newElement, false, false);
         displayAndUpdateElements();
         fadeInElement(newElement);
-        scrollDownPossible();
+        scrollDown();
         setDisplayTrackNumbers();
+
+        for(Track i : trackElements) {
+            System.out.println(i + " : " + i.getOrderInTrackBar());
+        }
+        System.out.println("====================");
     }
 
     private static void displayAndUpdateElements() {
@@ -166,7 +173,7 @@ public class TrackBar {
         ft.play();
     }
 
-    private static void scrollDownPossible() {
+    private static void scrollDown() {
         scrollPane.setVvalue(scrollPane.getVmax());
     }
 

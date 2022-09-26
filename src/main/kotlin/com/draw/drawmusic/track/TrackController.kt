@@ -10,19 +10,20 @@ import javafx.scene.shape.Circle
 
 abstract class TrackController {
     companion object {
-        private const val BRIGHTER1 = 3.0
+        protected const val BRIGHTER1 = 3.0
 
-        private const val DARKER1 = 0.7
-        private const val DARKER2 = 1.0
+        protected const val DARKER1 = 0.7
+        protected const val DARKER2 = 1.0
 
-        private const val ALPHA1 = 0.2
-        private const val ALPHA2 = 0.4
+        protected const val ALPHA1 = 0.2
+        protected const val ALPHA2 = 0.4
+        @JvmStatic protected val ALPHA3 = 0.5
 
-        private const val RADIUS = 10.0
+        protected const val RADIUS = 10.0
 
-        private const val BORDER = 3.0
+        protected const val BORDER = 3.0
 
-        private const val UNDERLINE_WIDTH = 1.5
+        protected const val UNDERLINE_WIDTH = 1.5
     }
 
     @FXML lateinit var colorCircle: Circle
@@ -31,8 +32,8 @@ abstract class TrackController {
 
     protected abstract val parent: Track
 
+    protected abstract fun makeShape()
     protected abstract fun updateShape()
-    protected abstract fun connectToParent()
 
     @FXML
     fun moveUp() {

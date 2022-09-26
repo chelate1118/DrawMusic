@@ -9,9 +9,6 @@ module com.draw.drawmusic {
     requires org.json;
     requires gov.nist.math.jama;
     requires annotations;
-    requires org.testng;
-    requires org.slf4j.simple;
-    requires org.slf4j;
 
     opens com.draw.drawmusic.controllers to javafx.fxml;
     exports com.draw.drawmusic;
