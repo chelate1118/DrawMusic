@@ -27,7 +27,7 @@ public abstract class PlayableNote extends MusicNote {
 
         Rectangle rect = new Rectangle(timeOn, MidiNote.pitchToY(pitch), timeOff, MidiNote.getNoteHeight(pitch));
         rect.setStroke(Color.BLACK);
-        rect.setFill(parent.getPalette().color());
+        rect.setFill(parent.getPalette().getColor());
 
         return rect;
     }

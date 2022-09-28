@@ -50,7 +50,7 @@ class MidiTrackController : TrackController(), Initializable {
             )
         )
         chooseInstrument.text = parent.instrument.name
-        for (instrument in Instrument.getInstrumentList()) {
+        for (instrument in Instrument.instrumentList) {
             chooseInstrument.items.add(makeMenuItem(instrument))
         }
     }
