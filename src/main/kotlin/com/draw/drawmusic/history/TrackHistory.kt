@@ -22,7 +22,7 @@ class TrackHistory private constructor(
         private val add = TrackBar::addElement
         private val delete = TrackBar::deleteElement
         private val moveUp = TrackBar::moveUp
-        private val moveDown = TrackBar:: moveDown
+        private val moveDown = TrackBar::moveDown
 
         fun saveAddHistory(`object`: Track) {
             TrackHistory(`object`, delete, add)
