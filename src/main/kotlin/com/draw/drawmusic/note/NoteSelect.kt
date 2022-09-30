@@ -1,5 +1,5 @@
-package com.draw.drawmusic.note;
+package com.draw.drawmusic.note
 
-public enum NoteSelect {
+enum class NoteSelect {
     NoteSelected, TrackSelected, TrackUnselected, Invisible
 }

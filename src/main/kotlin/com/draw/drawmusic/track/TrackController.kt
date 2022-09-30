@@ -33,7 +33,7 @@ abstract class TrackController {
     protected abstract val parent: Track
 
     protected abstract fun makeShape()
-    protected abstract fun updateShape()
+    abstract fun updateShape()
 
     @FXML
     fun moveUp() {
